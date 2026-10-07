@@ -396,7 +396,7 @@ const rnd=Math.random;
 function pickW(items,wf){let t=0;const ws=items.map(i=>{const w=Math.max(0,wf(i));t+=w;return w});if(t<=0)return items[Math.floor(rnd()*items.length)];let x=rnd()*t;for(let i=0;i<items.length;i++){x-=ws[i];if(x<=0)return items[i]}return items[items.length-1]}
 
 /* ---------- state ---------- */
-let P={col:{8:1,12:1,19:1},copium:0,season:1};
+let P={col:{},copium:0,season:1};
 try{const raw=localStorage.getItem(KEY);if(raw){const p=JSON.parse(raw);if(p&&p.col)P=p}}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(P));localStorage.setItem(KEY+'-session',JSON.stringify({...S,anim:null,pending:null},(k,v)=>v===Infinity?'__infinity__':v))}catch(e){}}
 function freshSeason(){
@@ -737,7 +737,7 @@ document.addEventListener('click',e=>{
   else if(act==='sound'){muted=!muted;try{localStorage.setItem(KEY+'-mute',muted?'1':'0')}catch(err){}if(!muted){unlockSound();sfx.fanfare('c')}render()}
   else if(act==='reset'){
     if(!resetArmed){resetArmed=true;b.textContent='Точно? Нажми ещё раз';setTimeout(()=>{resetArmed=false;render()},3000);return}
-    resetArmed=false;P={col:{8:1,12:1,19:1},copium:0,season:1};S=freshSeason();save();render();renderLayer();
+    resetArmed=false;P={col:{},copium:0,season:1};S=freshSeason();save();render();renderLayer();
   }
 });
 
@@ -845,7 +845,7 @@ function render(){
   const explanation=document.createElement('section');explanation.className='odds-panel';
   const previewMul=(live.some(x=>x.c.id===19)?1+pv(live.find(x=>x.c.id===19))/100:1)*(sets.includes('A')?1.1:1);
   const preview=odds({newMul:previewMul,dupeBias:live.some(x=>x.c.id===12)?.1:0});
-  explanation.innerHTML='<b>ЛАБОРАТОРИЯ СУДЬБЫ · ПРОТОТИП</b><h2>Собери руку. Измени шанс. Сорви печать.</h2><p>Стартовые карты уже в коллекции: Му Денг превращает повторы в новые, Капибара приносит больше копиума, Мёртв внутри повышает шанс новой карты ценой риска потерять печать.</p><div class="odds-chips"><span>Новая '+fmtNum(preview.n*100)+'%</span><span>Повтор '+fmtNum(preview.d*100)+'%</span><span>Фантик '+fmtNum(preview.w*100)+'%</span><span>Пусто '+fmtNum(preview.e*100)+'%</span></div><p>Шанс одной попытки до случайных эффектов и превращений. Баф +20% умножает 18% на 1,2: получится 21,6%, а не 38%. Каждая дополнительная попытка проходит ту же проверку.</p><p>Без новой карты: '+S.sinceNew+' / 11. На 12-м открытии — гарантированная новая при наличии подходящей карты; пустой ящик от дебафа может задержать гарантию.</p>';
+  explanation.innerHTML='<b>ЛАБОРАТОРИЯ СУДЬБЫ · ПРОТОТИП</b><h2>Собери руку. Измени шанс. Сорви печать.</h2><p>Начни с пустой коллекции: открывай ящики и собирай карты. Полученные карты можно поставить в руку — их бафы и дебафы изменят шансы следующих открытий.</p><div class="odds-chips"><span>Новая '+fmtNum(preview.n*100)+'%</span><span>Повтор '+fmtNum(preview.d*100)+'%</span><span>Фантик '+fmtNum(preview.w*100)+'%</span><span>Пусто '+fmtNum(preview.e*100)+'%</span></div><p>Шанс одной попытки до случайных эффектов и превращений. Баф +20% умножает 18% на 1,2: получится 21,6%, а не 38%. Каждая дополнительная попытка проходит ту же проверку.</p><p>Без новой карты: '+S.sinceNew+' / 11. На 12-м открытии — гарантированная новая при наличии подходящей карты; пустой ящик от дебафа может задержать гарантию.</p>';
   document.querySelector('.top').after(explanation);
   renderLayer();
 }

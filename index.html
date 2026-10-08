@@ -246,7 +246,13 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 .seal b{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;font-size:28px;letter-spacing:0}
 .seal span{position:absolute;top:calc(50% + 25px);left:0;width:100%;text-align:center}
 @media(max-width:760px){.seal b{font-size:20px;letter-spacing:0}.seal span{top:calc(50% + 19px)}}
-</style></head>
+</style>
+<style>
+.play-guide{color:#493b28;font-size:15px}.guide-line{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}.guide-line b{white-space:nowrap;color:#ab382b}.play-guide details{font-size:14px}.play-guide summary{cursor:pointer;text-decoration:underline;text-underline-offset:4px}.play-guide details[open]{padding:14px;background:#ede0b8;border:1px solid #a88c51}.odds-chips{margin-top:14px}.hand-warning{border-left:3px solid #b53a2c;padding-left:10px}.scrap-meter{text-align:left;font-size:13px;color:#fff0c7}.scrap-meter small{display:block;line-height:1.3;font-size:12px}.scrap-meter progress{width:100%;height:12px;accent-color:#edbd36}.mini-btns{display:grid;gap:10px;max-width:240px}.result-history{max-width:600px;cursor:auto}.result-history[open]{max-height:32vh;overflow:auto}.anim{gap:16px;cursor:default;justify-content:safe center}.anim>.btn{flex-shrink:0;min-height:44px}.season-reward{display:grid;justify-items:center;gap:8px;margin:12px 0}.season-reward>div{width:130px;height:100px;overflow:hidden}.sheet{max-height:90dvh;overflow:auto}.sheet ul{max-height:18vh;overflow:auto}.quick-reveal{display:flex;flex-direction:column;gap:22px;justify-content:center;overflow:hidden;background:#172463}.arcana-box{width:180px;height:145px;position:relative;animation:boxShake 1.45s ease-in-out both;perspective:600px}.box-front{position:absolute;inset:35px 0 0;border:4px double #edbd36;background:#1d3184;box-shadow:8px 12px #101742;display:grid;place-items:center;color:#edbd36;font-size:48px}.box-lid{position:absolute;inset:12px -7px auto;height:32px;background:#263e93;border:4px double #edbd36;z-index:2;transform-origin:50% 0;animation:lidLift 1.45s ease-in both}.wax-break{position:absolute;top:28px;left:65px;width:50px;height:50px;border:3px double #edbd36;border-radius:50%;background:#bd3c2b;color:#ffe19b;display:grid;place-items:center;z-index:3;animation:sealBreak 1.45s both}.opening-rays{position:absolute;width:80vmin;height:80vmin;background:repeating-conic-gradient(from 0deg,transparent 0deg 16deg,#ffdd7933 16deg 20deg);border-radius:50%;animation:openingGlow 1.45s both;pointer-events:none}.effect-flares{width:min(90vw,520px);min-height:130px;display:flex;flex-direction:column;gap:8px;align-items:center}.effect-flare{background:#f8eed5;color:#1c2a78;border:1px solid #edbd36;padding:8px 12px;font-size:14px;text-align:center;animation:stepIn .3s both}.effect-flare.bad{color:#ac3326}.quick-reveal>.btn{z-index:4;color:#ffe19b;border-color:#edbd36}@keyframes boxShake{0%{transform:scale(.85) rotate(-7deg)}25%{transform:rotate(6deg)}45%{transform:rotate(-5deg)}65%{transform:rotate(3deg)}80%{transform:scale(1.06)}100%{transform:scale(1.12)}}@keyframes lidLift{0%,60%{transform:none}100%{transform:translateY(-55px) rotateX(60deg);opacity:0}}@keyframes sealBreak{0%,50%{transform:none}100%{transform:translate(45px,70px) rotate(50deg);opacity:0}}@keyframes openingGlow{0%,45%{opacity:0;transform:scale(.4) rotate(-25deg)}100%{opacity:1;transform:scale(1.3) rotate(20deg)}}
+@media(max-width:760px){.guide-line{display:block}.guide-line b{display:block;margin-top:8px}.table{flex-direction:column}.seal-col{align-items:center}.fan{height:185px}.empty-table{min-height:240px}.hand{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;overflow:visible;padding:0;align-items:start}.slot{min-width:0}.slot.empty{min-height:155px;border-radius:45px 45px 3px 3px;font-size:12px}.slot.empty:after{display:none}.slot>.card{padding:3px;min-width:0;width:100%}.slot .face{padding:4px}.slot .window{height:auto;aspect-ratio:1/1.2;min-height:0}.slot .name{font-size:14px;overflow-wrap:anywhere}.slot .txt{font-size:12px;line-height:1.25}.slot .tags{gap:2px;flex-wrap:wrap}.slot .tag{font-size:8px;padding:1px 2px}.slot .meta{font-size:8px;flex-wrap:wrap;gap:2px}.slot .stars{font-size:9px}.slot .eff,.slot .anti{overflow-wrap:anywhere}.slot>.remove-hand{width:36px!important;min-width:36px!important;height:44px!important}.slot .btn{white-space:normal;padding:6px 2px;min-height:44px}.mini-btns{min-width:0;max-width:175px}.scrap-meter small{font-size:11px}.fly-row{flex-wrap:wrap;justify-content:center}.fly{max-width:min(255px,80vw)}.effect-flare{font-size:12px}.anim .headline{font-size:30px}.anim{gap:12px}.anim .fly .window{max-height:25vh}.anim .fly .txt{font-size:13px}.anim .fly .name{font-size:22px}.result-history{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.arcana-box,.box-lid,.wax-break,.opening-rays,.effect-flare{animation:none}.opening-rays{display:none}}
+</style>
+</head>
 <body>
 
 <div class="wrap" id="app"></div>
@@ -258,7 +264,7 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 const R={c:{n:'Обычная',w:60,cls:'fr-c'},r:{n:'Редкая',w:25,cls:'fr-r'},e:{n:'Эпическая',w:11,cls:'fr-e'},l:{n:'Легендарная',w:3.5,cls:'fr-l'},m:{n:'Мифическая',w:.5,cls:'fr-m'}};
 const ORD=['c','r','e','l','m'];
 const TAGS={B:'Брейнрот',S:'Сигма',D:'Думер',A:'Зверята',I:'Имиджборды',R:'Рунет'};
-const SETTXT={B:'Новая обычная карта даёт +1 печать',S:'Шанс дополнительных попыток ×2',D:'Повтор с вероятностью 50% возвращает печать',A:'+10% к шансу новой карты',I:'+1,5 к весу легендарных карт',R:'Копиум ×3'};
+const SETTXT={B:'Новая обычная карта даёт +1 печать',S:'Шанс дополнительных попыток ×2',D:'Повтор с вероятностью 50% возвращает печать',A:'+45% к шансу новой карты',I:'+1,5 к весу легендарных карт',R:'Копиум ×3'};
 const DATA=[
 [1,'Дубайский шоколад',2025,'c','B','+{v}% to Брейнрот',[15,25,40],'−10% to all other tags','Pistachio is a personality now'],
 [2,'Шесть-семь',2025,'c','B','A new Обычная gives +1 печать with {v}% chance',[20,30,45],'−10% to Эпическая and above','Six… seven…'],
@@ -305,7 +311,10 @@ CARDS[2].v=['2 попытки','3 попытки','3 попытки, перва�
 CARDS.forEach((c,i)=>{c.name=["Дубайский шоколад", "Шесть-семь", "Девичий ужин", "Римская империя", "Танцующий енот", "Пиббл", "Харизма", "Му Денг", "Фарм ауры", "Мьюинг", "Пингвин-нигилист", "Капибара", "Мотылёк и лампа", "Большой Шлёпа", "Так было всегда", "Кот за столом", "Танец с гробом", "Попкэт", "Мёртв внутри", "Окей, бумер", "Чимс", "Назад к обезьяне", "Ледяное ведро", "Платье", "Акции", "Сверхразум", "Вот он", "Доге", "Упоротый лис", "Кот Ъуъ", "Сова «Да ладно?»", "Длиннокот", "Лолкот", "Все ваши базы", "Потолочный кот", "Здесь был Килрой"][i];c.flavor=["Фисташка теперь черта характера.", "Шесть… семь…", "Крекеры, виноград, одна оливка. Идеально.", "Как часто ты об этом думаешь?", "Сначала танцует, потом ворует.", "Почеши животик.", "Негласная харизма освежает любой повтор.", "Кусает в обе стороны.", "+1000 ауры, −30 печатей.", "Молчи. Держи челюсть.", "Горы не ответят.", "Ну всё, я подъехала.", "Брат, можно мне немного лампы?", "Шлёпа осуждает твою коллекцию.", "Это всегда был лутбокс.", "Он не согласен с вероятностями.", "Хороним твой бюджет.", "Поп. Поп. Поп.", "1000 − 7", "Твои мемы устарели.", "Я просто открываю коропки.", "Откажись от гачи. Вернись к обезьяне.", "Передаю вызов следующему ящику.", "Сине-чёрное. Очевидно.", "Копиум растёт.", "Уровень просветления: гача.", "А вот и он.", "Вау. Такая удача. Очень гача.", "Всё будет хорошо. Наверное.", "Ъуъ", "Да ладно? Да, правда.", "Длиннокот о-о-очень длинный.", "Можно мне лутбокс?", "Вся ваша коллекция принадлежать нам.", "Потолочный кот наблюдает за открытием ящиков.", "Я был здесь до интернета."][i]});
 const BY={};CARDS.forEach(c=>BY[c.id]=c);
 const AYB_LEFT=[5,8,Infinity];
-const OPENS=30,SHOP=20,KEY='meme-arcana-prototype-v3';
+CARDS[7].v=[40,55,70];CARDS[18].v=[65,85,110];CARDS[18].anti='25% потерять ещё одну печать';
+CARDS[19].eff='Только эпические и выше; шанс новой +{v}%';CARDS[19].v=[75,100,125];CARDS[19].anti='Каждое открытие стоит 2 печати; если осталась одна — всё равно сработает';
+CARDS[30].v=[45,60,75];CARDS[31].v=[6,5,4];
+const OPENS=30,SHOP=8,CRAFT=24,PITY=8,SCRAPS=4,KEY='meme-arcana-prototype-v3';
 
 /* ---------- art ----------
    Put finished illustrations here: card id -> image path (5:4, e.g. 1000x800 PNG).
@@ -398,15 +407,16 @@ function pickW(items,wf){let t=0;const ws=items.map(i=>{const w=Math.max(0,wf(i)
 /* ---------- state ---------- */
 let P={col:{},copium:0,season:1};
 try{const raw=localStorage.getItem(KEY);if(raw){const p=JSON.parse(raw);if(p&&p.col)P=p}}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(P));localStorage.setItem(KEY+'-session',JSON.stringify({...S,anim:null,pending:null},(k,v)=>v===Infinity?'__infinity__':v))}catch(e){}}
+function save(){settleSeason();try{localStorage.setItem(KEY,JSON.stringify(P));localStorage.setItem(KEY+'-session',JSON.stringify({...S,anim:null,pending:null},(k,v)=>v===Infinity?'__infinity__':v))}catch(e){}}
 function freshSeason(){
   const s={opens:OPENS,openIdx:0,hand:[null,null,null],dupes:{},removed:[],news:[],masked:[],disabled:[],
     mew:0,stonks:0,crash:0,pop:0,aura:0,auraReady:false,sinceNew:0,monke:0,assRemoved:0,assUsed:false,swapsUsed:0,
-    ayb:null,aybUsed:false,lock:0,last:[],lastEmpty:false,log:[],pending:null,over:false,detail:null,anim:null};
+    ayb:null,aybUsed:false,lock:0,last:[],lastEmpty:false,log:[],pending:null,over:false,detail:null,anim:null,rewardClaimed:false,reward:null};
   if(P.col[36])s.hand[0]={id:36,stars:1};
   return s;
 }
 let S=freshSeason();try{const saved=JSON.parse(localStorage.getItem(KEY+'-session'),(k,v)=>v==='__infinity__'?Infinity:v);if(saved&&saved.hand&&saved.opens>=0)S={...S,...saved,anim:null,pending:null}}catch(e){}
+P.scraps=Math.max(0,Number(P.scraps)||0);
 let toastMsg='',toastT=0;
 function log(msg){S.log.unshift({n:S.openIdx,msg});S.log=S.log.slice(0,8)}
 function toast(msg){toastMsg=msg;clearTimeout(toastT);toastT=setTimeout(()=>{toastMsg='';renderLayer()},3200);renderLayer()}
@@ -436,7 +446,7 @@ function activeSets(live){
     const base=live.filter(h=>h.c.id!==15&&h.c.tags.includes(t)).length;
     const rest=live.filter(h=>h.c.id!==15&&!h.c.tags.includes(t)).length;
     const n=base+Math.min(wild,rest+(wildH?1:0));
-    if(base>0&&n>=3)on.push(t);
+    if(base>0&&n>=2)on.push(t);
   });
   return on;
 }
@@ -454,23 +464,47 @@ function rarWeights(ctx){
 }
 function tagMul(ctx,c){let s=0;c.tags.forEach(t=>s+=ctx.tag[t]);return s/c.tags.length}
 function odds(ctx){
-  let n=Math.min(.60,.18*ctx.newMul),d=Math.min(.88-n,.32*(1+ctx.dupeBias));
+  let n=Math.min(.80,.28*ctx.newMul),d=Math.min(.95-n,.42*(1+ctx.dupeBias));
   if(!CARDS.some(c=>!P.col[c.id]))n=0;
   if(!CARDS.some(c=>P.col[c.id]))d=0;
-  return {n,d,w:Math.max(0,1-n-d-.12),e:Math.min(.12,1-n-d)};
+  return {n,d,w:Math.max(0,1-n-d-.05),e:Math.min(.05,1-n-d)};
 }
 function drawCard(ctx,forceNew){
-  const o=odds(ctx),roll=rnd(),guarantee=forceNew||S.sinceNew>=12;
+  const o=odds(ctx),roll=rnd(),guarantee=forceNew||S.sinceNew>=PITY;
   let kind=guarantee?'new':roll<o.n?'new':roll<o.n+o.d?'dupe':roll<o.n+o.d+o.w?'wrapper':'empty';
+  ctx.guaranteedNew=guarantee;
   const names={new:'Новая карта',dupe:'Повтор',wrapper:'Фантик',empty:'Пусто'};
-  ctx.trace.push({kind:'roll',roll:roll*100,odds:o,title:guarantee?'Гарантия новой карты':'Бросок судьбы · '+fmtNum(roll*100)+' / 100',text:guarantee?'После 11 открытий без новой карты или по эффекту руки.':`Новая: 0–${fmtNum(o.n*100)} · повтор: до ${fmtNum((o.n+o.d)*100)} · фантик: до ${fmtNum((o.n+o.d+o.w)*100)} · дальше пусто. Результат: ${names[kind]}`});
-  if(kind==='wrapper'||kind==='empty'){if(kind==='wrapper'){P.copium++;ctx.wrappers++;}return null}
+  ctx.trace.push({kind:'roll',roll:roll*100,odds:o,title:guarantee?'Гарантия новой карты':'Бросок судьбы · '+fmtNum(roll*100)+' / 100',text:guarantee?'После 7 открытий без новой карты или по эффекту руки.':`Новая: 0–${fmtNum(o.n*100)} · повтор: до ${fmtNum((o.n+o.d)*100)} · фантик: до ${fmtNum((o.n+o.d+o.w)*100)} · дальше пусто. Результат: ${names[kind]}`});
+  if(kind==='wrapper'||kind==='empty'){addScrap(ctx,kind==='empty');return null}
   const w=rarWeights(ctx);
   let pool=CARDS.filter(c=>(kind==='new'?!P.col[c.id]:!!P.col[c.id])&&w[c.r]>0&&!S.removed.includes(c.id));
-  if(!pool.length){ctx.trace.push({kind:'bad',title:'Нет подходящей карты',text:'В этом пуле нет доступных карт нужной редкости. Вместо неё — фантик, +1 Копиум.'});P.copium++;ctx.wrappers++;return null}
+  if(!pool.length){ctx.trace.push({kind:'bad',title:'Нет подходящей карты',text:'В этом пуле нет доступных карт нужной редкости. Вместо неё — фантик: +1 Копиум и шаг к бесплатной печати.'});addScrap(ctx);return null}
   const c=pickW(pool,c=>w[c.r]/pool.filter(x=>x.r===c.r).length*tagMul(ctx,c)*(kind==='dupe'&&c.r==='c'&&!ctx.noDecay?Math.pow(.95,S.dupes[c.id]||0):1));
   ctx.trace.push({kind:kind==='new'?'good':'neutral',title:names[kind]+' · '+c.name,text:'Редкость выбирается среди доступных карт, затем применяются веса тегов руки.'});return c;
 }
+
+function refundSeal(ctx){if((ctx.sealRefunds||0)>=1)return;ctx.sealRefunds=(ctx.sealRefunds||0)+1;S.opens++;return true}
+function addScrap(ctx,empty=false){
+ P.scraps=(P.scraps||0)+1;ctx.wrappers++;
+ if(!empty)P.copium++;else ctx.emptyRewards=(ctx.emptyRewards||0)+1;
+ if(P.scraps>=SCRAPS){const n=Math.floor(P.scraps/SCRAPS);P.scraps%=SCRAPS;S.opens+=n;ctx.freeSeals=(ctx.freeSeals||0)+n;ctx.trace.push({kind:'good',title:'Бесплатная печать',text:'Четыре обрывка собраны: +'+n+' печать.'})}
+ if(empty)ctx.trace.push({kind:'neutral',title:'Обрывок печати',text:'Даже пустой ящик даёт шаг к бесплатному открытию.'});
+}
+function settleSeason(){
+ if(!S.over||S.rewardClaimed)return;
+ S.rewardClaimed=true;S.masked=[];
+ const pool=CARDS.filter(c=>!P.col[c.id]);
+ if(pool.length){const c=pickW(pool,c=>R[c.r].w);P.col[c.id]=1;S.news.push(c.id);S.reward=c.id;log('Награда сезона: '+c.name)}
+}
+function craftCard(){
+ if(S.anim||S.over||P.copium<CRAFT)return;
+ const pool=CARDS.filter(c=>!P.col[c.id]);if(!pool.length)return;
+ const c=pickW(pool,c=>R[c.r].w);P.copium-=CRAFT;P.col[c.id]=1;S.news.push(c.id);S.sinceNew=0;
+ const d={c,isNew:true,masked:false,notes:['Новая карта за '+CRAFT+' Копиума'],level:false};
+ S.last=[d];S.lastEmpty=false;S.lastWrappers=0;S.lastFreeSeals=0;S.lastTrace=[{kind:'good',title:'Обмен Копиума',text:d.notes[0]}];
+ S.anim={drops:[d],empty:false,trace:S.lastTrace,wrappers:0};if(CARDS.every(c=>P.col[c.id]))S.over=true;save();render();revealAnim();
+}
+
 function removeFromHand(id){S.hand=S.hand.map(h=>h&&h.id===id?null:h);if(id===23)S.hand=S.hand.map(h=>h&&h.block?null:h)}
 
 function pre(ctx,h){
@@ -492,8 +526,8 @@ function pre(ctx,h){
     case 14:ctx.tag.A*=1+v/100;break;
     case 17:ctx.empty+=.1*a;ctx.forced=Math.max(ctx.forced,2);if(h.lv===2)ctx.add.e+=5;break;
     case 18:S.pop+=v;ctx.dbl+=S.pop/100;break;
-    case 19:ctx.newMul*=1+v/100;if(rnd()<.07*a){ctx.burn++;log('Мёртв внутри: 1000 − 7, потеряна ещё одна печать')}break;
-    case 20:ctx.mul.e*=1+v/100;ctx.mul.l*=1-.5*a;break;
+    case 19:ctx.newMul*=1+v/100;if(rnd()<.25*a){ctx.burn++;log('Мёртв внутри: 1000 − 7, потеряна ещё одна печать')}break;
+    case 20:ctx.minR='e';ctx.newMul*=1+v/100;ctx.burn++;break;
     case 21:ctx.mul.c*=1+v/100;['e','l','m'].forEach(r=>ctx.mul[r]*=1-.1*a);break;
     case 22:if(S.monke>0){ctx.forced=Math.max(ctx.forced,2);S.monke--}break;
     case 25:ctx.add.l+=S.stonks;break;
@@ -504,7 +538,7 @@ function pre(ctx,h){
       const got=[];for(let i=0;i<raw;i++){if(rnd()<.3*a){const b=bad[Math.floor(rnd()*bad.length)];b[1]();got.push('штраф: '+b[0])}else{const g=good[Math.floor(rnd()*good.length)];g[1]();got.push(g[0])}}
       log('Доге: '+got.join(', '));break;}
     case 30:ctx.tag.R*=1+v/100;break;
-    case 32:if(S.sinceNew>=raw-1){ctx.forceNew=true;log('Длиннокот дотянулся до новой карты')}if(rnd()<.1*a)ctx.rick=true;break;
+    case 32:if(S.sinceNew>=raw){ctx.forceNew=true;log('Длиннокот дотянулся до новой карты')}if(rnd()<.1*a)ctx.rick=true;break;
     case 33:Object.keys(ctx.tag).forEach(t=>ctx.tag[t]*=t==='A'?raw:1-.3*a);break;
     case 35:if(S.openIdx%raw===0){ctx.forced=Math.max(ctx.forced,3);log('Потолочный кот: три попытки через потолок')}ctx.empty+=.05*a;break;
   }
@@ -522,14 +556,14 @@ function processDrop(ctx,c){
       if(chance(ctx,'Кот за столом · потеря повтора',.25*h.a)){log('Кот за столом: повторный бросок исчез');return null}
       const c2=drawCard(ctx,false);if(!c2)return null;d.c=c2;d.isNew=!P.col[c2.id];d.notes.push('Кот за столом не согласился и перебросил результат');
     }
-  }else if((h=has(8))&&chance(ctx,h.c.name+' · дебаф',.05*h.a)){const o=pickOld(c.r);if(o){d.c=o;d.isNew=false;d.notes.push('Му Денг укусила не ту карту: новая стала повтором')}}
+  }else if(!ctx.guaranteedNew&&(h=has(8))&&chance(ctx,h.c.name+' · дебаф',.05*h.a)){const o=pickOld(c.r);if(o){d.c=o;d.isNew=false;d.notes.push('Му Денг укусила не ту карту: новая стала повтором')}}
   const id=d.c.id;
   if(d.isNew){
     P.col[id]=1;S.news.push(id);S.sinceNew=0;
     if((h=has(31))&&chance(ctx,h.c.name+' · дебаф',.05*h.a)){d.masked=true;S.masked.push(id)}
     if(d.c.r==='c'){
-      if((h=has(2))&&chance(ctx,h.c.name+' · эффект',pv(h)/100)){S.opens++;d.notes.push('Шесть-семь: +1 печать')}
-      if(ctx.sets.includes('B')){S.opens++;d.notes.push('Брейнрот — комплект: +1 печать')}
+      if((h=has(2))&&chance(ctx,h.c.name+' · эффект',pv(h)/100)){if(refundSeal(ctx))d.notes.push('Шесть-семь: +1 печать')}
+      if(ctx.sets.includes('B')){if(refundSeal(ctx))d.notes.push('Брейнрот — комплект: +1 печать')}
       if((h=has(9))&&S.aura>0&&rnd()<h.a){S.aura=0;d.notes.push('Новая обычная карта сбросила ауру')}
     }
     if((h=has(34))&&!h.virtual&&!S.aybUsed&&id!==34){S.ayb={id,left:AYB_LEFT[h.lv]};S.aybUsed=true;S.disabled.push(id);d.notes.push('Все ваши базы забрала эффект карты '+d.c.name)}
@@ -537,9 +571,9 @@ function processDrop(ctx,c){
   }else{
     P.col[id]=(P.col[id]||0)+1;S.dupes[id]=(S.dupes[id]||0)+1;
     let cop=ctx.copMul;if((h=has(12)))cop*=num(h);P.copium+=Math.round(cop);
-    if((h=has(13))&&chance(ctx,h.c.name+' · эффект',pv(h)/100)){S.opens++;d.notes.push('Мотылёк и лампа вернул печать')}
-    if(ctx.sets.includes('D')&&rnd()<.5){S.opens++;d.notes.push('Комплект «Думер» вернул печать')}
-    if((h=has(7))&&h.lv===2&&rnd()<.1){S.opens++;d.notes.push('Харизма вернул печать')}
+    if((h=has(13))&&chance(ctx,h.c.name+' · эффект',pv(h)/100)){if(refundSeal(ctx))d.notes.push('Мотылёк и лампа вернул печать')}
+    if(ctx.sets.includes('D')&&rnd()<.5){if(refundSeal(ctx))d.notes.push('Комплект «Думер» вернул печать')}
+    if((h=has(7))&&h.lv===2&&rnd()<.1){if(refundSeal(ctx))d.notes.push('Харизма вернул печать')}
     if((h=has(9))){S.aura++;if(S.aura>=num(h)){S.auraReady=true;S.aura=0;d.notes.push('Аура накоплена: следующая карта будет эпической или выше')}}
     if((h=has(18))){S.pop=h.a===1?0:S.pop/2}
     const slot=S.hand.find(x=>x&&x.id===id);
@@ -561,13 +595,16 @@ function openBox(){
   ctx.live=fox===0?hand.filter(h=>h===f):hand.filter(h=>!h.off);
   ctx.sets=activeSets(ctx.live);
   if(ctx.sets.includes('S'))ctx.multiMul*=2;
-  if(ctx.sets.includes('A'))ctx.newMul*=1.1;
+  if(ctx.sets.includes('A'))ctx.newMul*=1.45;
   if(ctx.sets.includes('I'))ctx.add.l+=1.5;
   if(ctx.sets.includes('R'))ctx.copMul*=3;
-  ctx.trace.push({kind:'neutral',title:'Начальные шансы',text:'18% новая · 32% повтор · 38% фантик · 12% пусто. Одна печать = 1 открытие.'});
+  ctx.trace.push({kind:'neutral',title:'Начальные шансы',text:'28% новая · 42% повтор · 25% фантик · 5% пусто. Эффекты руки меняют эти шансы.'});
   hand.filter(h=>h.off).forEach(h=>ctx.trace.push({kind:'bad',cardId:h.c.id,title:h.c.name+' · отключена',text:h.why}));
   ctx.live.forEach(h=>{
     const before=effectSnapshot(ctx);const oldЖурнал=S.log[0];pre(ctx,h);
+    const after=effectSnapshot(ctx);const delta=after['Шанс новой, %']-before['Шанс новой, %'];
+    const quick=delta?((delta>0?'+':'')+fmtNum(delta)+' п.п. к новой карте'):after['Попытки']!==before['Попытки']?after['Попытки']+' попытки':h.c.id===12?'Копиум за повтор ×'+num(h):h.c.id===8||h.c.id===31?'Превращение повтора: '+pv(h)+'%':h.c.id===20?'Эпические и выше':'Эффект учтён';
+    ctx.trace.push({kind:'quick',cardId:h.c.id,title:h.c.name,text:quick+(after['Доп. стоимость']>before['Доп. стоимость']?' · −1 печать':'')});
     if(S.log[0]!==oldЖурнал)ctx.trace.push({kind:'effect',title:'Сработало: '+h.c.name,text:S.log[0].msg});
     ctx.trace.push({kind:'effect',cardId:h.c.id,title:h.c.name+' · '+starsStr(h.stars),text:effText(h.c,h.lv)+'. Дебаф: '+h.c.anti+'. '+effectDiff(before,effectSnapshot(ctx))});
   });
@@ -575,7 +612,7 @@ function openBox(){
   if(S.crash>0){ctx.onlyCommon=true;S.crash--;ctx.trace.push({kind:'bad',title:'Обвал Акции',text:'В этом открытии доступны только Обычная.'});log('Акции рухнули: только обычные карты')}
   if(S.auraReady){ctx.minR='e';S.auraReady=false;ctx.trace.push({kind:'good',title:'Аура',text:'Если выпадает карта — её редкость не ниже Эпическая.'})}
   let count=ctx.forced;
-  if(ctx.forcedEmpty||rnd()<ctx.empty){count=0;if(!ctx.forcedEmpty)log('Ящик пуст. Судьба шутит.')}
+  if(S.sinceNew<PITY&&(ctx.forcedEmpty||rnd()<ctx.empty)){count=0;if(!ctx.forcedEmpty)log('Ящик пуст. Судьба шутит.')}
   else if(count===1){if(rnd()<ctx.trip*ctx.multiMul)count=3;else if(rnd()<Math.min(.95,ctx.dbl*ctx.multiMul))count=2}
   const drops=[];
   for(let i=0;i<count;i++){const c=drawCard(ctx,ctx.forceNew&&i===0);const d=c?processDrop(ctx,c):null;if(d)drops.push(d)}
@@ -588,15 +625,17 @@ function openBox(){
   if(ctx.bomb)removeFromHand(4);
   if((h=has(14))&&!h.virtual&&rnd()<.03*h.a){removeFromHand(14);log('Большой Шлёпа ушёл из руки')}
   if(S.ayb&&ctx.live.some(x=>x.virtual)){S.ayb.left--;if(S.ayb.left<=0){S.ayb=null;log('Все ваши базы освободили захваченный эффект')}}
-  if(ctx.burn||ctx.refund)ctx.trace.push({kind:'effect',title:'Стоимость эффектов',text:'Потеряно дополнительных печатей: '+ctx.burn+'. Возвращено: '+ctx.refund+'.'});
-  S.opens=Math.max(0,S.opens-ctx.burn+ctx.refund);
+  if(ctx.burn||ctx.refund||ctx.sealRefunds)ctx.trace.push({kind:'effect',title:'Стоимость эффектов',text:'Потеряно дополнительных печатей: '+ctx.burn+'. Возвращено: '+Math.min(1,ctx.refund+(ctx.sealRefunds||0))+'.'});
+  S.opens=Math.max(0,S.opens-ctx.burn+Math.min(ctx.refund,Math.max(0,1-(ctx.sealRefunds||0))));
   if(!hand.some(x=>x.c.id===18))S.pop=0;
   S.last=drops;S.lastEmpty=!drops.length;S.lastWrappers=ctx.wrappers;S.lastTrace=ctx.trace;
   drops.forEach(d=>d.notes.forEach(n=>ctx.trace.push({kind:'effect',title:'Эффект результата',text:n})));
+  if(count===0)addScrap(ctx,true);
+  S.lastWrappers=ctx.wrappers;S.lastEmptyRewards=ctx.emptyRewards||0;S.lastFreeSeals=ctx.freeSeals||0;
   if(count===0)ctx.trace.push({kind:'bad',title:'Пустой ящик',text:'Сработал эффект пустого ящика: попытки внутри отменены.'});
   drops.forEach(d=>d.notes.forEach(n=>log(n)));
-  if(S.opens<=0)S.over=true;save();
-  S.anim={drops,empty:!drops.length,rick:!!ctx.rick,trace:ctx.trace,wrappers:ctx.wrappers};
+  if(S.opens<=0||CARDS.every(c=>P.col[c.id]))S.over=true;save();
+  S.anim={drops,empty:!drops.length,rick:!!ctx.rick,trace:ctx.trace,wrappers:ctx.wrappers,emptyRewards:ctx.emptyRewards||0,freeSeals:ctx.freeSeals||0};
   render();
   showAnim();
 }
@@ -623,17 +662,9 @@ function ritualVisual(step){
  return '';
 }
 function showAnim(){
-  const trace=S.anim.trace;let i=0;
-  const paint=()=>{
-    if(!S.anim||S.anim.phase==='reveal')return;
-    const step=trace[i];
-    document.getElementById('anim').innerHTML='<div class="ritual-veil" role="dialog" aria-modal="true" aria-label="Розыгрыш"><div class="ritual"><small>ПЕЧАТЬ '+S.openIdx+' · ШАГ '+(i+1)+' / '+trace.length+'</small><h2>Как решается судьба</h2>'+ritualVisual(step)+'<div class="ritual-steps" aria-live="polite">'+trace.slice(0,i+1).map((t,j)=>'<div class="ritual-step '+t.kind+(j===i?' current':'')+'"><b>'+esc(t.title)+'</b><p>'+esc(t.text)+'</p></div>').join('')+'</div><button class="btn" data-act="ritual-next">Дальше</button><button class="btn" data-act="anim-skip">Сразу к результату</button></div></div>';
-    const sc=document.querySelector('.ritual-steps');sc.scrollTop=sc.scrollHeight;
-    if(step.kind==='bad')sfx.dupe();else if(step.kind==='roll')sfx.spin();else sfx.click();
-    clearTimeout(animT);animT=setTimeout(next,reduced()?700:1700);
-  };
-  const next=()=>{clearTimeout(animT);i++;if(i>=trace.length)revealAnim();else paint()};
-  ritualNext=next;paint();
+ const effects=S.anim.trace.filter(t=>t.kind==='quick').slice(0,4).map((t,i)=>'<span class="effect-flare" style="animation-delay:'+(.1+i*.22)+'s">'+esc(t.title)+' · '+esc(t.text)+'</span>').join('');
+ document.getElementById('anim').innerHTML='<div class="ritual-veil quick-reveal" role="dialog" aria-modal="true" aria-label="Открытие ящика"><div class="opening-rays"></div><div class="arcana-box"><div class="box-lid"></div><div class="box-front"><span>✦</span></div><i class="wax-break">✦</i></div><p class="anim-cap">Печать сорвана</p><div class="effect-flares">'+effects+'</div><button class="btn" data-act="anim-skip">Открыть сразу</button></div>';
+ sfx.rustle(2);sfx.spin();clearTimeout(animT);animT=setTimeout(revealAnim,reduced()?120:1450);
 }
 let ritualNext=()=>{};
 function bestRar(drops){let k=-1;drops.forEach(d=>{const r=d.masked?0:ORD.indexOf(d.c.r);if(r>k)k=r});return k<0?null:ORD[k]}
@@ -646,20 +677,20 @@ function revealAnim(){
   const newCount=drops.filter(d=>d.isNew&&!d.masked).length;
   const rayCol={c:'#9fc4ff',r:'#eef2f7',e:'#ffd35a',l:'',m:'#e8cf95'};
   let head,sub='';
-  if(S.anim.empty){head=S.anim.wrappers?'Фантик':'Пусто';sub=S.anim.wrappers?'+'+S.anim.wrappers+' Копиум. Можно накопить на ещё одну попытку.':'В этот раз без награды. Гарантия приближается.'}
+  if(S.anim.empty){head=S.anim.wrappers>(S.anim.emptyRewards||0)?'Фантик':'Пусто';sub='Обрывки печати: '+(P.scraps||0)+' из '+SCRAPS+'. Ещё немного — и бесплатное открытие.'}
   else if(newCount>1)head=newCount+' новых карт!';
   else if(newCount===1)head='Новая карта!';
   else head=drops.length>1?'Повторы':'Повтор';
-  let h='<div class="anim" data-act="anim-close" role="dialog" aria-label="Ящик открыт">';
+  let h='<div class="anim" role="dialog" aria-modal="true" aria-label="Ящик открыт">';
   if(!S.anim.empty)h+='<div class="rays'+(best==='l'?' l':'')+'" style="--ray:'+(newCount?rayCol[best]:'#8a93b8')+'"></div><div class="flash"></div>';
   h+='<p class="headline">'+head+'</p>';
-  if(S.anim.wrappers)h+='<div class="candy-wrapper" aria-hidden="true">✦</div>';if(sub)h+='<p class="tap">'+sub+'</p>';if(S.anim.wrappers&&!S.anim.empty)h+='<p class="tap">Фантики: +'+S.anim.wrappers+' Копиум</p>';
+  if(S.anim.wrappers)h+='<div class="candy-wrapper" aria-hidden="true">✦</div>';if(sub)h+='<p class="tap">'+sub+'</p>';if(S.anim.wrappers&&!S.anim.empty)h+='<p class="tap">Обрывков печати: '+S.anim.wrappers+'</p>';
   h+='<div class="fly-row'+(drops.length>3?' many':'')+'">';
   drops.forEach((d,i)=>{
     const stamp=d.masked?'<span class="stamp mask">Повтор?</span>':d.isNew?'<span class="stamp new">Новая</span>':'<span class="stamp dup">Повтор</span>';
-    h+='<div class="fly" style="animation-delay:'+(.12+i*.14)+'s">'+(d.masked?maskedHtml(stamp):cardHtml(d.c,{stamp,noFlavor:drops.length>3}))+'</div>';
+    h+='<div class="fly" style="animation-delay:'+(.12+i*.14)+'s">'+(d.masked?maskedHtml(stamp):cardHtml(d.c,{stamp,noFlavor:true}))+'</div>';
   });
-  h+='</div><p class="tap">Нажми, чтобы продолжить</p></div>';
+  h+='</div>'+(S.anim.freeSeals?'<p class="tap">Собрана бесплатная печать: +'+S.anim.freeSeals+'</p>':'')+'<details class="roll-history result-history" data-act="anim-noop"><summary>Почему выпал этот результат?</summary>'+S.anim.trace.map(t=>'<p><b>'+esc(t.title)+'</b><br>'+esc(t.text)+'</p>').join('')+'</details><button class="btn gold" data-act="anim-close">Продолжить</button></div>';
   A.innerHTML=h;
   if(S.anim.empty)sfx.empty();
   else{
@@ -707,6 +738,7 @@ function newSeason(){P.season++;S=freshSeason();save();sfx.rustle(3);render();re
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;
   const act=b.dataset.act,id=+b.dataset.id,slot=+b.dataset.slot;
+  if(act==='anim-noop')return;
   if(act==='ritual-next'){ritualNext();return}
   if(S.anim&&!['anim-skip','anim-close','art-zoom','art-close','sound'].includes(act))return;
   if(act==='remove'){
@@ -731,6 +763,7 @@ document.addEventListener('click',e=>{
   else if(act==='slot'&&S.pending)place(S.pending,slot);
   else if(act==='cancel'){S.pending=null;render()}
   else if(act==='buy')buyOpen();
+  else if(act==='craft')craftCard();
   else if(act==='gems')toast('Это игра о микротранзакциях. Но платить здесь нельзя. Подумай об этом.');
   else if(act==='detail'){S.detail=S.detail===id?null:id;sfx.rustle(1);render()}
   else if(act==='season')newSeason();
@@ -752,7 +785,7 @@ function cardHtml(c,opt){
   '<button type="button" class="window art-window" data-act="art-zoom" data-id="'+c.id+'" aria-label="Рассмотреть иллюстрацию: '+esc(c.name)+'">'+art(c)+'</button>'+
   '<div class="name">'+esc(c.name)+'</div>'+tagsHtml(c)+
   '<div><div class="lbl"><span>Баф</span><span class="st">'+(mythic?'навсегда':starsStr(stars))+'</span></div><div class="txt">'+esc(effText(c,lv))+'</div></div>'+
-  '<div class="anti"><div class="lbl"><span>Дебаф</span>'+(stars>=3&&!mythic?'<span>ослаблен вдвое</span>':'')+'</div><div class="txt">'+esc(c.anti)+'</div></div>'+
+  '<div class="anti"><div class="lbl"><span>Дебаф</span>'+(stars>=3&&!mythic&&c.id!==20?'<span>ослаблен вдвое</span>':'')+'</div><div class="txt">'+esc(c.anti)+'</div></div>'+
   (opt.off?'<div class="off">Отключено: '+esc(opt.off)+'</div>':'')+
   (opt.noFlavor?'':'<div class="flav">'+esc(c.flavor)+'</div>')+(!opt.noFlavor&&P.col[c.id]&&!S.hand.some(x=>x&&x.id===c.id)?'<button class="btn equip" data-act="take" data-id="'+c.id+'">✋ В руку</button>':'')+
   '</div></div>';
@@ -798,17 +831,17 @@ function render(){
   });
   h+='</div>';
   if(S.ayb)h+='<p style="color:var(--muted);margin:10px 0 0;font-size:14px">Все ваши базы четвёртый слот: '+esc(BY[S.ayb.id].name)+(S.ayb.left===Infinity?' до конца сезона':', осталось открытий: '+S.ayb.left)+'</p>';
-  h+='<div class="sets">'+(sets.length?sets.map(t=>'<span class="chip on">'+TAGS[t]+' — комплект: '+SETTXT[t]+'</span>').join(''):'<span class="none">Бонус комплекта: собери в руке три карты с общим тегом.</span>')+
+  h+='<div class="sets">'+(sets.length?sets.map(t=>'<span class="chip on">'+TAGS[t]+' — комплект: '+SETTXT[t]+'</span>').join(''):'<span class="none">Бонус комплекта: достаточно двух карт с общим тегом.</span>')+
     (S.aura?'<span class="chip">Аура '+S.aura+'</span>':'')+(S.mew?'<span class="chip">Серия мьюинга: '+S.mew+'</span>':'')+(S.stonks?'<span class="chip">Акции +'+fmtNum(S.stonks)+'%</span>':'')+(S.pop?'<span class="chip">Попкэт '+fmtNum(S.pop)+'%</span>':'')+(S.crash?'<span class="chip">Обвал: '+S.crash+'</span>':'')+'</div>';
   h+='</section>';
 
   h+='<section class="table" aria-label="Открытие ящиков"><div class="seal-col">'+
     '<button class="seal" data-act="open" '+(S.over||S.opens<=0||locked||S.pending||S.anim?'disabled':'')+'><b>Открыть</b><span>'+(locked?'подожди…':S.opens+' печатей')+'</span></button>'+
-    '<div class="mini-btns"><button class="btn" data-act="buy" '+(P.copium<SHOP||S.over?'disabled':'')+'>+1 печать · '+SHOP+' Копиум</button>'+
-    '</div></div>';
+    '<div class="mini-btns"><div class="scrap-meter"><b>Обрывки печати '+(P.scraps||0)+' / '+SCRAPS+'</b><progress value="'+(P.scraps||0)+'" max="'+SCRAPS+'" aria-label="Обрывки до бесплатной печати"></progress><small>Фантики и пустые ящики дают обрывки. Четыре — новая печать.</small></div><button class="btn" data-act="buy" '+(P.copium<SHOP||S.over?'disabled':'')+'>+1 печать · '+SHOP+' Копиум</button>'+
+    '<button class="btn" data-act="craft" '+(P.copium<CRAFT||S.over||collected()===36?'disabled':'')+'>Новая карта · '+CRAFT+' Копиума</button></div></div>';
   h+='<div class="drops">';
   if(!S.last.length){
-    h+='<div class="empty-table">'+(S.lastEmpty?'<b>'+(S.lastWrappers?'Фантик':'Пусто')+'</b><span>'+(S.lastWrappers?'Бумага вместо карты. Копиум уже начислен.':'Новая карта — редкость. Посмотри разбор броска ниже.')+'</span>':'<div class="fan" aria-hidden="true">'+[8,14,28].map(id=>'<div class="fan-card"><small>'+R[BY[id].r].n+' · '+BY[id].year+'</small><div class="window">'+art(BY[id])+'</div><b>'+esc(BY[id].name)+'</b></div>').join('')+'</div><b>У судьбы есть чувство юмора.</b><span>Сорви печать. Собери 36 арканов. Подбери руку, которая изменит твои шансы.</span>')+'</div>';
+    h+='<div class="empty-table">'+(S.lastEmpty?'<b>'+(S.lastWrappers>(S.lastEmptyRewards||0)?'Фантик':'Пусто')+'</b><span>'+(S.lastWrappers?'Обрывки приближают бесплатную печать.':'Обрывок уже добавлен к шкале бесплатной печати.')+'</span>':'<div class="fan" aria-hidden="true">'+[8,14,28].map(id=>'<div class="fan-card"><small>'+R[BY[id].r].n+' · '+BY[id].year+'</small><div class="window">'+art(BY[id])+'</div><b>'+esc(BY[id].name)+'</b></div>').join('')+'</div><b>У судьбы есть чувство юмора.</b><span>Сорви печать. Собери 36 арканов. Подбери руку, которая изменит твои шансы.</span>')+'</div>';
   }else{
     h+='<div class="drop-row">';
     S.last.forEach(d=>{
@@ -819,7 +852,7 @@ function render(){
     });
     h+='</div>';
   }
-  if(S.lastWrappers)h+='<p>Фантики: +'+S.lastWrappers+' Копиум</p>';
+  if(S.lastWrappers)h+='<p>Обрывков печати: '+S.lastWrappers+(S.lastFreeSeals?' · Бесплатных печатей: +'+S.lastFreeSeals:'')+'</p>';
   if(S.lastTrace)h+='<details class="roll-history"><summary>Почему выпал этот результат?</summary>'+S.lastTrace.map(t=>'<p><b>'+esc(t.title)+'</b><br>'+esc(t.text)+'</p>').join('')+'</details>';
   h+='<ul class="log" aria-label="Журнал">'+S.log.slice(0,6).map(l=>'<li><b>#'+l.n+'</b> · '+esc(l.msg)+'</li>').join('')+'</ul>';
   h+='</div></section>';
@@ -840,12 +873,13 @@ function render(){
   });
   h+='</div></section>';
   h+='<footer class="foot"><span>Drop rates: Обычная 60% · Редкая 25% · Эпическая 11% · Легендарная 3.5% · Мифическая 0.5%. Disclosed as required by law. Honestly.</span><button class="btn" data-act="reset">Сбросить прогресс</button></footer>';
-  h=h.replace('Drop rates: Обычная 60% · Редкая 25% · Эпическая 11% · Легендарная 3.5% · Мифическая 0.5%. Disclosed as required by law. Honestly.','Прототип: 18% новая / 32% повтор / 38% фантик / 12% пусто до эффектов. Редкость определяется отдельно, только при выпадении карты.');
+  h=h.replace('Drop rates: Обычная 60% · Редкая 25% · Эпическая 11% · Легендарная 3.5% · Мифическая 0.5%. Disclosed as required by law. Honestly.','Собери 36 арканов. Каждая пара общих тегов усиливает руку. Прогресс сохраняется автоматически.');
   document.body.classList.toggle('rolling',!!S.anim);document.getElementById('app').inert=!!S.anim;document.getElementById('app').innerHTML=h;
-  const explanation=document.createElement('section');explanation.className='odds-panel';
-  const previewMul=(live.some(x=>x.c.id===19)?1+pv(live.find(x=>x.c.id===19))/100:1)*(sets.includes('A')?1.1:1);
+  const explanation=document.createElement('section');explanation.className='play-guide';
+  const previewMul=(live.some(x=>x.c.id===19)?1+pv(live.find(x=>x.c.id===19))/100:1)*(live.some(x=>x.c.id===20)?1+pv(live.find(x=>x.c.id===20))/100:1)*(sets.includes('A')?1.45:1);
   const preview=odds({newMul:previewMul,dupeBias:live.some(x=>x.c.id===12)?.1:0});
-  explanation.innerHTML='<b>ЛАБОРАТОРИЯ СУДЬБЫ · ПРОТОТИП</b><h2>Собери руку. Измени шанс. Сорви печать.</h2><p>Начни с пустой коллекции: открывай ящики и собирай карты. Полученные карты можно поставить в руку — их бафы и дебафы изменят шансы следующих открытий.</p><div class="odds-chips"><span>Новая '+fmtNum(preview.n*100)+'%</span><span>Повтор '+fmtNum(preview.d*100)+'%</span><span>Фантик '+fmtNum(preview.w*100)+'%</span><span>Пусто '+fmtNum(preview.e*100)+'%</span></div><p>Шанс одной попытки до случайных эффектов и превращений. Баф +20% умножает 18% на 1,2: получится 21,6%, а не 38%. Каждая дополнительная попытка проходит ту же проверку.</p><p>Без новой карты: '+S.sinceNew+' / 11. На 12-м открытии — гарантированная новая при наличии подходящей карты; пустой ящик от дебафа может задержать гарантию.</p>';
+  const missing=CARDS.filter(c=>!P.col[c.id]);
+  explanation.innerHTML='<div class="guide-line"><span>'+(collected()===0?'Сорви первую печать. Найденные карты меняют следующие открытия.':sets.length?'Комплект работает: '+sets.map(t=>TAGS[t]).join(', '):'Соедини две карты с общим тегом, чтобы усилить руку.')+'</span><b>До гарантии: '+Math.max(1,PITY-S.sinceNew)+'</b></div><details><summary>Как работают шансы</summary><div class="odds-chips"><span>Новая '+fmtNum(preview.n*100)+'%</span><span>Повтор '+fmtNum(preview.d*100)+'%</span><span>Фантик '+fmtNum(preview.w*100)+'%</span><span>Пусто '+fmtNum(preview.e*100)+'%</span></div><p>Это шансы одной попытки с постоянными эффектами руки. Превращения, дополнительные попытки и случайные эффекты показаны в разборе результата. На 8-м открытии без новой карты срабатывает гарантия, даже при эффекте пустого ящика. Ограничения редкости остаются: для недостающих обычных карт убери Бумера.</p><p>Четыре обрывка автоматически дают печать; '+SHOP+' Копиума можно обменять на печать, '+CRAFT+' — на новую карту. Возврат печати от эффектов ограничен одним за ящик. В конце сезона — ещё одна новая карта.</p></details>'+(live.some(x=>x.c.id===20)?'<p class="hand-warning">Бумер: открытие за 2 печати, только эпические и выше.'+(!missing.some(c=>ORD.indexOf(c.r)>=2)?' Все такие карты уже собраны — смени руку.':'')+'</p>':'')+live.filter(x=>x.off).map(x=>'<p class="hand-warning">'+esc(x.c.name)+': '+esc(x.why)+'</p>').join('');
   document.querySelector('.top').after(explanation);
   renderLayer();
 }
@@ -862,6 +896,7 @@ function renderLayer(){
     }else{
       h+='<h2 id="end-h">Сезон '+P.season+' завершён</h2>';
       const news=S.news.map(id=>BY[id].name);
+      if(S.reward)h+='<div class="season-reward"><small>ПОДАРОК ЗА СЕЗОН · НОВАЯ КАРТА</small><div>'+art(BY[S.reward])+'</div><b>'+esc(BY[S.reward].name)+'</b></div>';
       h+='<p>Новых карт за сезон: '+news.length+'. Коллекция: '+(collected()+S.masked.length)+' из 36.</p>';
       if(news.length)h+='<ul>'+news.map(n=>'<li>'+esc(n)+'</li>').join('')+'</ul>';
       if(S.masked.length)h+='<p>Сова «Да ладно?» признаётся: эти «повторы» на самом деле были новыми картами: '+S.masked.map(id=>esc(BY[id].name)).join(', ')+'. Вот так-то.</p>';
@@ -873,7 +908,7 @@ function renderLayer(){
   L.innerHTML=h;
 }
 
-function localizeSaved(t){if(typeof t!=="string")return t;for(const [a,b] of [["THE THIRTY-SIX ARCANA OF THE INTERNET", "ТРИДЦАТЬ ШЕСТЬ АРКАНОВ ИНТЕРНЕТА"], ["LET FATE DECIDE", "ДОВЕРЬСЯ СУДЬБЕ"], ["Your next obsession goes here", "Здесь будет твой следующий любимый мем"], ["This is a game about microtransactions. You cannot pay. Think about that.", "Это игра о микротранзакциях. Но платить здесь нельзя. Подумай об этом."], ["Sure? Click again", "Точно? Нажми ещё раз"], ["View illustration: ", "Рассмотреть иллюстрацию: "], ["Anti-effect", "Дебаф"], ["Effect", "Баф"], ["eternal", "навсегда"], ["halved", "ослаблен вдвое"], ["Disabled: ", "Отключено: "], ["Some dupe", "Какой-то повтор"], ["You will find out when the season ends. O RLY?", "Узнаешь в конце сезона. Да ладно?"], ["Close ×", "Закрыть ×"], ["The Arcana Archive", "Архив арканов"], ["36 illustrations · A look at the full deck. Your collection stays yours.", "36 иллюстраций · Здесь можно рассмотреть всю колоду. Это не открывает карты в коллекции."], ["Where should ", "Куда поставить карту «"], [" go? ", "»? "], ["Cancel", "Отмена"], ["Here · ", "Сюда · "], ["1 open", "1 печать"], ["Empty slot", "Пустой слот"], ["Occupied by the Ice Bucket", "Занято ледяным ведром"], ["4th slot: ", "четвёртый слот: "], [" for the whole season", " до конца сезона"], [", opens left: ", ", осталось открытий: "], [" set: ", " — комплект: "], ["Set bonus: three cards with the same tag in your hand.", "Бонус комплекта: собери в руке три карты с общим тегом."], ["Mewing streak ", "Серия мьюинга: "], ["Crash: ", "Обвал: "], ["Opening boxes", "Открытие ящиков"], ["wait…", "подожди…"], ["Buy Gems", "Купить кристаллы"], ["Your fate has a sense of humour.", "У судьбы есть чувство юмора."], ["Break the seal. Collect 36 arcana. Build a hand that bends the odds.", "Сорви печать. Собери 36 арканов. Подбери руку, которая изменит твои шансы."], ["Dupe?", "Повтор?"], ["The older the meme, the rarer the drop", "Чем старше мем, тем труднее его получить"], ["View the art book", "Вся колода"], [", anti-effect halved", ", дебаф ослаблен вдвое"], [", not found yet", ", ещё не найдена"], ["Reset progress", "Сбросить прогресс"], ["This animation cannot be skipped. ", "Эту анимацию нельзя пропустить. Осталось: "], [" s left.", " с."], ["Collection complete", "Коллекция собрана"], ["All 36 arcana are yours. Congratulations, you beat a game about lootboxes.", "Все 36 арканов твои. Поздравляем — ты прошёл игру про лутбоксы."], ["Coming soon: Season 2. 120 new memes.", "Продолжение коллекции — впереди."], [" is over", " завершён"], ["New cards this season: ", "Новых карт за сезон: "], [". Collection: ", ". Коллекция: "], [" of 36.", " из 36."], [" confesses: those “dupes” were actually new cards: ", " признаётся: эти «повторы» на самом деле были новыми картами: "], [". YA RLY.", ". Вот так-то."], ["The next season starts with an empty hand again", "Следующий сезон снова начинается с пустой руки"], [", except for Kilroy", ", кроме Килроя"], ["New season", "Новый сезон"], ["a new Common gives +1 open", "Новая обычная карта даёт +1 печать"], ["hand multidrop ×2", "Шанс дополнительных попыток ×2"], ["dupes refund an open 50% of the time", "Повтор с вероятностью 50% возвращает печать"], ["+10% to new cards", "+10% к шансу новой карты"], ["+1.5% to Legendary", "+1,5 к весу легендарных карт"], ["All Your Base took its effect", "Все ваши базы забрала её эффект"], ["Sigma in hand", "В руке есть Сигма"], ["Brainrot in hand", "В руке есть Брейнрот"], ["Girl Dinner: the plate was empty, the open was wasted", "Девичий ужин: тарелка пуста, печать потрачена"], ["Girl Dinner served an extra plate", "Девичий ужин: дополнительная попытка"], ["Roman Empire: the legions march in", "Римская империя: легионы идут в бой"], ["Dancing Raccoon stole ", "Танцующий енот украл карту "], [" from your hand", " из руки"], ["Nihilist Penguin walked off for one last card", "Пингвин-нигилист отправился за последней картой"], ["Dead Inside: 1000 − 7, an open burned", "Мёртв внутри: 1000 − 7, потеряна ещё одна печать"], ["refund an open", "вернуть печать"], ["+2% to Legendary", "+2 к весу легендарных карт"], ["double drop", "две попытки"], ["+30% to new cards", "+30% к шансу новой карты"], ["burned an open", "потеряна печать"], ["Commons only", "только обычные карты"], ["penalty: ", "штраф: "], ["Longcat stretched all the way to a new card", "Длиннокот дотянулся до новой карты"], ["Ceiling Cat dropped three cards through the ceiling", "Потолочный кот: три попытки через потолок"], ["Moo Deng bit the dupe into a new card", "Му Денг превратила повтор в новую карту"], ["O RLY Owl: that dupe? YA RLY, it is new", "Сова «Да ладно?»: это повтор? Нет, новая карта!"], ["Cat at the Table rerolled a dupe into the void", "Кот за столом: повторный бросок исчез"], ["Cat at the Table disagreed and rerolled", "Кот за столом не согласился и перебросил результат"], ["Moo Deng bit the wrong card", "Му Денг укусила не ту карту: новая стала повтором"], ["A new Common reset your aura", "Новая обычная карта сбросила ауру"], [" captured the effect of ", " забрала эффект карты "], ["The Dress changed color and became ", "Платье сменило цвет и превратилось в карту "], [" refunded an open", " вернул печать"], ["Aura charged: the next card is Epic or better", "Аура накоплена: следующая карта будет эпической или выше"], [" leveled up to ", " усиливается до "], [" from this season’s pool", " из пула этого сезона"], ["Stoned Fox: hand effects fired twice", "Упоротый лис: эффекты руки усилены вдвое"], ["Stoned Fox: hand effects did not fire", "Упоротый лис: эффекты руки не сработали"], ["Stonks crashed: Commons only", "Акции рухнули: только обычные карты"], ["The box was empty. Thanks for playing.", "Ящик пуст. Судьба шутит."], ["Stonks: a Legendary! Crash incoming", "Акции: легендарная карта! Впереди обвал"], ["Dat Boi: the triple drop cost 2 opens", "Вот он: три попытки стоили две печати"], ["Big Floppa walked out of your hand", "Большой Шлёпа ушёл из руки"], ["All Your Base released the captured effect", "Все ваши базы освободили захваченный эффект"], ["Kilroy was here, and Kilroy is staying.", "Килрой был здесь — и останется навсегда."], ["This card is already in your hand.", "Эта карта уже в руке."], ["A swap costs 1 open, and you have none left.", "Замена стоит одну печать, а у тебя не осталось печатей."], ["Return to Monke cleared the rest of your hand", "Назад к обезьяне: остальные карты покинули руку"], ["Nihilist Penguin took 3 opens", "Пингвин-нигилист забрал три печати"], ["Into your hand: ", "В руку: "], [" (swap cost 1 open)", " (замена: 1 печать)"], ["Bought an open for ", "Куплена печать за "], ["Box opened", "Ящик открыт"], ["Log", "Журнал"], ["Longcat is loooooooong.", "Длиннокот о-о-очень длинный."], ["Dubai Chocolate", "Дубайский шоколад"], ["Six Seven", "Шесть-семь"], ["Girl Dinner", "Девичий ужин"], ["Roman Empire", "Римская империя"], ["Dancing Raccoon", "Танцующий енот"], ["Pibble", "Пиббл"], ["Rizz", "Харизма"], ["Moo Deng", "Му Денг"], ["Aura Farming", "Фарм ауры"], ["Mewing", "Мьюинг"], ["Nihilist Penguin", "Пингвин-нигилист"], ["Capybara", "Капибара"], ["Moth & Lamp", "Мотылёк и лампа"], ["Big Floppa", "Большой Шлёпа"], ["Always Has Been", "Так было всегда"], ["Cat at the Table", "Кот за столом"], ["Coffin Dance", "Танец с гробом"], ["Popcat", "Попкэт"], ["Dead Inside", "Мёртв внутри"], ["OK Boomer", "Окей, бумер"], ["Cheems", "Чимс"], ["Return to Monke", "Назад к обезьяне"], ["Ice Bucket Challenge", "Ледяное ведро"], ["The Dress", "Платье"], ["Stonks", "Акции"], ["Galaxy Brain", "Сверхразум"], ["Dat Boi", "Вот он"], ["Doge", "Доге"], ["Stoned Fox", "Упоротый лис"], ["Ъуъ Cat", "Кот Ъуъ"], ["O RLY Owl", "Сова «Да ладно?»"], ["Longcat", "Длиннокот"], ["Lolcat", "Лолкот"], ["All Your Base", "Все ваши базы"], ["Ceiling Cat", "Потолочный кот"], ["Kilroy Was Here", "Здесь был Килрой"], ["Meme Arcana", "Мемные арканы"], ["Common", "Обычная"], ["Rare", "Редкая"], ["Epic", "Эпическая"], ["Legendary", "Легендарная"], ["Mythic", "Мифическая"], ["Brainrot", "Брейнрот"], ["Sigma", "Сигма"], ["Doomer", "Думер"], ["Critters", "Зверята"], ["Imageboard", "Имиджборды"], ["Runet", "Рунет"], ["Copium", "Копиум"], ["Season", "Сезон"], ["Opens", "Печати"], ["Collection", "Коллекция"], ["Aura", "Аура"], ["Kilroy", "Килрой"]])t=t.split(a).join(b);return t.replace("Думер set","Комплект «Думер»")}
+function localizeSaved(t){if(typeof t!=="string")return t;for(const [a,b] of [["THE THIRTY-SIX ARCANA OF THE INTERNET", "ТРИДЦАТЬ ШЕСТЬ АРКАНОВ ИНТЕРНЕТА"], ["LET FATE DECIDE", "ДОВЕРЬСЯ СУДЬБЕ"], ["Your next obsession goes here", "Здесь будет твой следующий любимый мем"], ["This is a game about microtransactions. You cannot pay. Think about that.", "Это игра о микротранзакциях. Но платить здесь нельзя. Подумай об этом."], ["Sure? Click again", "Точно? Нажми ещё раз"], ["View illustration: ", "Рассмотреть иллюстрацию: "], ["Anti-effect", "Дебаф"], ["Effect", "Баф"], ["eternal", "навсегда"], ["halved", "ослаблен вдвое"], ["Disabled: ", "Отключено: "], ["Some dupe", "Какой-то повтор"], ["You will find out when the season ends. O RLY?", "Узнаешь в конце сезона. Да ладно?"], ["Close ×", "Закрыть ×"], ["The Arcana Archive", "Архив арканов"], ["36 illustrations · A look at the full deck. Your collection stays yours.", "36 иллюстраций · Здесь можно рассмотреть всю колоду. Это не открывает карты в коллекции."], ["Where should ", "Куда поставить карту «"], [" go? ", "»? "], ["Cancel", "Отмена"], ["Here · ", "Сюда · "], ["1 open", "1 печать"], ["Empty slot", "Пустой слот"], ["Occupied by the Ice Bucket", "Занято ледяным ведром"], ["4th slot: ", "четвёртый слот: "], [" for the whole season", " до конца сезона"], [", opens left: ", ", осталось открытий: "], [" set: ", " — комплект: "], ["Set bonus: three cards with the same tag in your hand.", "Бонус комплекта: достаточно двух карт с общим тегом."], ["Mewing streak ", "Серия мьюинга: "], ["Crash: ", "Обвал: "], ["Opening boxes", "Открытие ящиков"], ["wait…", "подожди…"], ["Buy Gems", "Купить кристаллы"], ["Your fate has a sense of humour.", "У судьбы есть чувство юмора."], ["Break the seal. Collect 36 arcana. Build a hand that bends the odds.", "Сорви печать. Собери 36 арканов. Подбери руку, которая изменит твои шансы."], ["Dupe?", "Повтор?"], ["The older the meme, the rarer the drop", "Чем старше мем, тем труднее его получить"], ["View the art book", "Вся колода"], [", anti-effect halved", ", дебаф ослаблен вдвое"], [", not found yet", ", ещё не найдена"], ["Reset progress", "Сбросить прогресс"], ["This animation cannot be skipped. ", "Эту анимацию нельзя пропустить. Осталось: "], [" s left.", " с."], ["Collection complete", "Коллекция собрана"], ["All 36 arcana are yours. Congratulations, you beat a game about lootboxes.", "Все 36 арканов твои. Поздравляем — ты прошёл игру про лутбоксы."], ["Coming soon: Season 2. 120 new memes.", "Продолжение коллекции — впереди."], [" is over", " завершён"], ["New cards this season: ", "Новых карт за сезон: "], [". Collection: ", ". Коллекция: "], [" of 36.", " из 36."], [" confesses: those “dupes” were actually new cards: ", " признаётся: эти «повторы» на самом деле были новыми картами: "], [". YA RLY.", ". Вот так-то."], ["The next season starts with an empty hand again", "Следующий сезон снова начинается с пустой руки"], [", except for Kilroy", ", кроме Килроя"], ["New season", "Новый сезон"], ["a new Common gives +1 open", "Новая обычная карта даёт +1 печать"], ["hand multidrop ×2", "Шанс дополнительных попыток ×2"], ["dupes refund an open 50% of the time", "Повтор с вероятностью 50% возвращает печать"], ["+10% to new cards", "+10% к шансу новой карты"], ["+1.5% to Legendary", "+1,5 к весу легендарных карт"], ["All Your Base took its effect", "Все ваши базы забрала её эффект"], ["Sigma in hand", "В руке есть Сигма"], ["Brainrot in hand", "В руке есть Брейнрот"], ["Girl Dinner: the plate was empty, the open was wasted", "Девичий ужин: тарелка пуста, печать потрачена"], ["Girl Dinner served an extra plate", "Девичий ужин: дополнительная попытка"], ["Roman Empire: the legions march in", "Римская империя: легионы идут в бой"], ["Dancing Raccoon stole ", "Танцующий енот украл карту "], [" from your hand", " из руки"], ["Nihilist Penguin walked off for one last card", "Пингвин-нигилист отправился за последней картой"], ["Dead Inside: 1000 − 7, an open burned", "Мёртв внутри: 1000 − 7, потеряна ещё одна печать"], ["refund an open", "вернуть печать"], ["+2% to Legendary", "+2 к весу легендарных карт"], ["double drop", "две попытки"], ["+30% to new cards", "+30% к шансу новой карты"], ["burned an open", "потеряна печать"], ["Commons only", "только обычные карты"], ["penalty: ", "штраф: "], ["Longcat stretched all the way to a new card", "Длиннокот дотянулся до новой карты"], ["Ceiling Cat dropped three cards through the ceiling", "Потолочный кот: три попытки через потолок"], ["Moo Deng bit the dupe into a new card", "Му Денг превратила повтор в новую карту"], ["O RLY Owl: that dupe? YA RLY, it is new", "Сова «Да ладно?»: это повтор? Нет, новая карта!"], ["Cat at the Table rerolled a dupe into the void", "Кот за столом: повторный бросок исчез"], ["Cat at the Table disagreed and rerolled", "Кот за столом не согласился и перебросил результат"], ["Moo Deng bit the wrong card", "Му Денг укусила не ту карту: новая стала повтором"], ["A new Common reset your aura", "Новая обычная карта сбросила ауру"], [" captured the effect of ", " забрала эффект карты "], ["The Dress changed color and became ", "Платье сменило цвет и превратилось в карту "], [" refunded an open", " вернул печать"], ["Aura charged: the next card is Epic or better", "Аура накоплена: следующая карта будет эпической или выше"], [" leveled up to ", " усиливается до "], [" from this season’s pool", " из пула этого сезона"], ["Stoned Fox: hand effects fired twice", "Упоротый лис: эффекты руки усилены вдвое"], ["Stoned Fox: hand effects did not fire", "Упоротый лис: эффекты руки не сработали"], ["Stonks crashed: Commons only", "Акции рухнули: только обычные карты"], ["The box was empty. Thanks for playing.", "Ящик пуст. Судьба шутит."], ["Stonks: a Legendary! Crash incoming", "Акции: легендарная карта! Впереди обвал"], ["Dat Boi: the triple drop cost 2 opens", "Вот он: три попытки стоили две печати"], ["Big Floppa walked out of your hand", "Большой Шлёпа ушёл из руки"], ["All Your Base released the captured effect", "Все ваши базы освободили захваченный эффект"], ["Kilroy was here, and Kilroy is staying.", "Килрой был здесь — и останется навсегда."], ["This card is already in your hand.", "Эта карта уже в руке."], ["A swap costs 1 open, and you have none left.", "Замена стоит одну печать, а у тебя не осталось печатей."], ["Return to Monke cleared the rest of your hand", "Назад к обезьяне: остальные карты покинули руку"], ["Nihilist Penguin took 3 opens", "Пингвин-нигилист забрал три печати"], ["Into your hand: ", "В руку: "], [" (swap cost 1 open)", " (замена: 1 печать)"], ["Bought an open for ", "Куплена печать за "], ["Box opened", "Ящик открыт"], ["Log", "Журнал"], ["Longcat is loooooooong.", "Длиннокот о-о-очень длинный."], ["Dubai Chocolate", "Дубайский шоколад"], ["Six Seven", "Шесть-семь"], ["Girl Dinner", "Девичий ужин"], ["Roman Empire", "Римская империя"], ["Dancing Raccoon", "Танцующий енот"], ["Pibble", "Пиббл"], ["Rizz", "Харизма"], ["Moo Deng", "Му Денг"], ["Aura Farming", "Фарм ауры"], ["Mewing", "Мьюинг"], ["Nihilist Penguin", "Пингвин-нигилист"], ["Capybara", "Капибара"], ["Moth & Lamp", "Мотылёк и лампа"], ["Big Floppa", "Большой Шлёпа"], ["Always Has Been", "Так было всегда"], ["Cat at the Table", "Кот за столом"], ["Coffin Dance", "Танец с гробом"], ["Popcat", "Попкэт"], ["Dead Inside", "Мёртв внутри"], ["OK Boomer", "Окей, бумер"], ["Cheems", "Чимс"], ["Return to Monke", "Назад к обезьяне"], ["Ice Bucket Challenge", "Ледяное ведро"], ["The Dress", "Платье"], ["Stonks", "Акции"], ["Galaxy Brain", "Сверхразум"], ["Dat Boi", "Вот он"], ["Doge", "Доге"], ["Stoned Fox", "Упоротый лис"], ["Ъуъ Cat", "Кот Ъуъ"], ["O RLY Owl", "Сова «Да ладно?»"], ["Longcat", "Длиннокот"], ["Lolcat", "Лолкот"], ["All Your Base", "Все ваши базы"], ["Ceiling Cat", "Потолочный кот"], ["Kilroy Was Here", "Здесь был Килрой"], ["Meme Arcana", "Мемные арканы"], ["Common", "Обычная"], ["Rare", "Редкая"], ["Epic", "Эпическая"], ["Legendary", "Легендарная"], ["Mythic", "Мифическая"], ["Brainrot", "Брейнрот"], ["Sigma", "Сигма"], ["Doomer", "Думер"], ["Critters", "Зверята"], ["Imageboard", "Имиджборды"], ["Runet", "Рунет"], ["Copium", "Копиум"], ["Season", "Сезон"], ["Opens", "Печати"], ["Collection", "Коллекция"], ["Aura", "Аура"], ["Kilroy", "Килрой"]])t=t.split(a).join(b);return t.replace("Думер set","Комплект «Думер»")}
 function start(data){S.log=(S.log||[]).map(x=>({...x,msg:localizeSaved(x.msg)}));S.lastTrace=(S.lastTrace||[]).map(x=>({...x,title:localizeSaved(x.title),text:localizeSaved(x.text)}));S.last=(S.last||[]).map(d=>({...d,c:BY[d.c.id]||d.c}));if(data&&data.S){S=data.S;S.anim=null}render();if(S.lock>Date.now())tickRick()}
 save();
 try{window.claude&&window.claude.hot&&window.claude.hot.snapshot&&window.claude.hot.snapshot(()=>({S}))}catch(e){}

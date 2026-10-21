@@ -240,6 +240,9 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 @media(max-width:1240px){.wrap{margin:18px;max-width:none}}
 @media(max-width:760px){.wrap{margin:10px;padding:16px 12px 20px;outline-offset:2px;box-shadow:0 0 0 6px #111c51;gap:24px}.top{gap:16px;padding-bottom:18px}.brand{padding:6px 20px}.brand:before{font-size:8px;letter-spacing:.1em}.brand h1{font-size:clamp(28px,8vw,44px)}.brand p{font-size:12px;margin-top:8px}.brand:after{right:-5px;top:22px;font-size:30px}.brand h1:before{left:-5px;top:24px;font-size:27px}.stats{gap:6px;display:grid;grid-template-columns:repeat(4,1fr);width:100%}.stat{min-width:0;padding:6px 2px!important}.stat b{font-size:22px}.stat span{font-size:8px}.stats>.btn{grid-column:1/-1;justify-self:center;margin-top:3px;min-height:30px;padding:4px 12px;font-size:12px}.table{padding:19px 13px 25px;gap:23px;min-height:0}.fan{height:220px;margin:0}.fan:before{width:206px;height:206px;top:8px}.fan-card{width:115px;top:24px;padding:5px 5px 8px}.fan-card:first-child,.fan-card:last-child{top:37px}.fan-card .window{height:94px}.fan-card>small{font-size:7px;letter-spacing:.05em}.fan-card>b{font-size:12px;margin-top:7px}.empty-table{min-height:298px;gap:7px}.empty-table>b{font-size:23px;line-height:1.1}.empty-table>span{font-size:12px}.seal-col{gap:17px;justify-content:center}.seal{width:111px;height:111px}.seal b{font-size:26px}.seal:after{top:13px;font-size:16px}.seal span{font-size:11px}.mini-btns{max-width:155px;min-width:115px}.btn{font-size:12px}.sec-h h2{font-size:24px}.sec-h .hint{font-size:12px}.hand{grid-template-columns:repeat(3,minmax(220px,1fr));gap:13px}.slot.empty{min-height:170px}.coll{gap:8px}.cc{min-height:156px;padding:3px}.cc .n{font-size:12px}.cc .face{padding:4px}.foot{font-size:10px}.book-head h2{font-size:22px}.book-head p{font-size:11px}.book-grid{gap:10px;padding:12px}.book-grid .card{padding:4px}.book-grid .name{font-size:15px}.book-grid .face{padding:6px}.book-grid .txt{font-size:11px}.book-grid .tag{font-size:8px;padding:0 4px}.artbook{width:94vw}.artwork .book-head h2{font-size:20px}}
 
+html[lang="en"] .brand:before{content:'✦  THE THIRTY-SIX ARCANA OF THE INTERNET  ✦'}
+html[lang="en"] .seal-col:before{content:'LET FATE DECIDE'}
+html[lang="en"] .slot.empty:after{content:'Your next favourite meme goes here'}
 </style>
 <style>
 .odds-panel{background:#ede0b8;border:2px solid #282724;margin:20px 0;padding:18px;color:#292921}.odds-panel h2{font-size:24px;margin:10px 0}.odds-panel p{font-size:15px;line-height:1.5}.odds-chips{display:flex;flex-wrap:wrap;gap:8px}.odds-chips span{padding:10px;border:1px solid #343020;background:#fff4d5}.slot{position:relative}.remove-hand{position:absolute!important;right:6px;top:6px;z-index:3;font-size:24px!important;min-width:44px;min-height:44px;background:#a83124!important;color:white!important}.collection-item{min-width:0}.collection-item .cc{width:100%}.collection-equip{width:100%;margin-top:6px;padding:8px 2px!important;font-size:12px!important;min-height:44px}.equip{margin-top:10px}.roll-history{background:#f4e7be;color:#282724;padding:12px;width:100%;font-size:14px;line-height:1.5}.ritual-veil{position:fixed;inset:0;background:#131a39ed;z-index:1000;display:grid;place-items:center;padding:16px}.ritual{background:#f6eccd;border:5px double #b79a41;color:#27251e;max-width:700px;width:100%;padding:24px;max-height:90dvh}.ritual h2{margin:12px 0}.ritual-steps{max-height:55dvh;overflow:auto}.ritual-step{padding:14px;margin:10px 0;border-left:4px solid #303f80;background:#e9dfc2;opacity:.65}.ritual-step.current{opacity:1;animation:stepIn .3s ease-out;background:#fff7dd}.ritual-step.good{border-color:#37774a}.ritual-step.bad{border-color:#a63226}.ritual-step p{margin:8px 0 0;line-height:1.5;font-size:16px}.ritual .btn{margin:8px 8px 0 0;min-height:44px}@keyframes stepIn{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}@media(prefers-reduced-motion:reduce){.ritual-step.current{animation:none}}@media(max-width:600px){.ritual{padding:14px}.odds-panel h2{font-size:20px}.ritual h2{font-size:22px}}
@@ -264,6 +267,482 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 
 <script>
 (function(){
+/* Presentation-only localization: save data and game rules stay language-neutral.
+   Prefer the browser's primary language; all unsupported languages use English. */
+const UI_LANG=/^ru(?:-|$)/i.test((navigator.languages&&navigator.languages[0])||navigator.language||'en')?'ru':'en';
+document.documentElement.lang=UI_LANG;
+document.title=UI_LANG==='ru'?'Мемные арканы':'Meme Arcana';
+const EN_TEXT={
+ "Это шансы одной попытки с постоянными эффектами руки. Превращения, дополнительные попытки и случайные эффекты показаны в разборе результата. На 8-м открытии без новой карты срабатывает гарантия, даже при эффекте пустого ящика. Ограничения редкости остаются: для недостающих обычных карт убери Бумера.": "These are the odds for one attempt with your hand's permanent effects. Conversions, extra attempts and random effects appear in the result breakdown. After seven openings without a new card, the eighth guarantees one, even if an empty-box effect triggers. Rarity restrictions still apply: remove Boomer to find missing Common cards.",
+ "на новую карту. Возврат печати от эффектов ограничен одним за ящик. В конце сезона — ещё одна новая карта.": "a new card. Card effects can refund at most one seal per box. Each season ends with another new card.",
+ "В этом пуле нет доступных карт нужной редкости. Вместо неё — фантик: +1 Копиум и шаг к бесплатной печати.": "No eligible cards of this rarity remain in this pool. You get a wrapper instead: +1 Copium and progress toward a free seal.",
+ "Собери 36 арканов. Каждая пара общих тегов усиливает руку. Прогресс сохраняется автоматически.": "Collect all 36 arcana. Each pair of matching tags strengthens your hand. Progress saves automatically.",
+ "Собери руку из коллекции. Установка в пустой слот бесплатна; замена или удаление — 1 печать.": "Build a hand from your collection. Empty slots are free; replacing or removing a card costs 1 seal.",
+ "Основные шансы не изменились. Условие эффекта проверяется при подходящем результате.": "The base odds are unchanged. This effect is checked when an eligible result occurs.",
+ "Сова «Да ладно?» признаётся: эти «повторы» на самом деле были новыми картами: ": "O RLY Owl confesses: these “duplicates” were actually new cards: ",
+ "Редкость выбирается среди доступных карт, затем применяются веса тегов руки.": "Rarity is chosen from the available cards, then your hand's tag weights apply.",
+ "Сорви печать. Собери 36 арканов. Подбери руку, которая изменит твои шансы.": "Break the seal. Collect 36 arcana. Build a hand that bends the odds.",
+ "Каждое открытие стоит 2 печати; если осталась одна — всё равно сработает": "Each opening costs 2 seals; it still works if you only have one left",
+ "Здесь можно рассмотреть всю колоду. Это не открывает карты в коллекции.": "Explore the full deck here. This does not unlock cards in your collection.",
+ "Это игра о микротранзакциях. Но платить здесь нельзя. Подумай об этом.": "This is a game about microtransactions. You cannot pay. Think about that.",
+ "Все 36 арканов твои. Поздравляем — ты прошёл игру про лутбоксы.": "All 36 arcana are yours. Congratulations, you beat a game about lootboxes.",
+ "Сорви первую печать. Найденные карты меняют следующие открытия.": "Break your first seal. The cards you find change future openings.",
+ "Звёзды растут, когда выпадает повтор карты, стоящей в руке.": "Cards gain stars when you draw a duplicate of a card in your hand.",
+ "Фантики и пустые ящики дают обрывки. Четыре — новая печать.": "Wrappers and empty boxes give scraps. Four scraps make a seal.",
+ "Аура накоплена: следующая карта будет эпической или выше": "Aura charged: the next card is Epic or better",
+ "Замена стоит одну печать, а у тебя не осталось печатей.": "Replacing a card costs one seal, and you have none left.",
+ "Сработал эффект пустого ящика: попытки внутри отменены.": "An empty-box effect triggered: all attempts inside were cancelled.",
+ "Бумер: открытие за 2 печати, только эпические и выше.": "Boomer: 2 seals per opening, Epic cards and above only.",
+ "После 7 открытий без новой карты или по эффекту руки.": "After seven openings without a new card, or from a hand effect.",
+ "Бонус комплекта: достаточно двух карт с общим тегом.": "Set bonus: two cards with a shared tag are enough.",
+ "Если выпадает карта — её редкость не ниже Эпическая.": "Any card drawn will be Epic or better.",
+ "Повторы не теряют вес, Копиум ×2, 10% вернуть печать": "Duplicates keep their weight, Copium ×2, 10% chance to refund a seal",
+ "Соедини две карты с общим тегом, чтобы усилить руку.": "Pair two cards with a shared tag to strengthen your hand.",
+ "Во время серии нет случайных дополнительных попыток": "No random extra attempts while the streak is active",
+ "Случайный эффект не сработал; рука работает обычно.": "The random effect did not trigger; your hand works normally.",
+ "Кот за столом не согласился и перебросил результат": "Cat at the Table disagreed and rerolled",
+ "Даже пустой ящик даёт шаг к бесплатному открытию.": "Even an empty box brings you closer to a free opening.",
+ "Му Денг укусила не ту карту: новая стала повтором": "Moo Deng bit the wrong card: a new card became a duplicate",
+ "Мёртв внутри: 1000 − 7, потеряна ещё одна печать": "Dead Inside: 1000 − 7, one extra seal lost",
+ "Назад к обезьяне: остальные карты покинули руку": "Return to Monke: the other cards left your hand",
+ "Обрывок уже добавлен к шкале бесплатной печати.": "A scrap has been added to your free-seal meter.",
+ "Пингвин-нигилист отправился за последней картой": "Nihilist Penguin went looking for the last card",
+ "Сова «Да ладно?»: это повтор? Нет, новая карта!": "O RLY Owl: a duplicate? No, a new card!",
+ "Килрой навсегда занимает слот — это его дебаф.": "Kilroy keeps his slot forever — that is his debuff.",
+ "Следующий сезон снова начинается с пустой руки": "The next season starts with an empty hand again",
+ "Девичий ужин: тарелка пуста, печать потрачена": "Girl Dinner: the plate was empty, the seal was spent",
+ "После Легендарная — 5 открытий только Обычная": "After a Legendary, the next 5 openings give only Common cards",
+ "Потолочный кот наблюдает за открытием ящиков.": "Ceiling Cat is watching you open boxes.",
+ "Собственные теги не учитываются в комплектах": "Its own tags do not count toward sets",
+ "Эффект карты-донора отключён до конца сезона": "The donor card's effect is disabled until the season ends",
+ "Эффекты остальных карт отключены на этот ход": "Other hand effects are disabled for this opening",
+ "Все ваши базы освободили захваченный эффект": "All Your Base released the captured effect",
+ "Новая: 5% превратить в повтор того же ранга": "New card: 5% chance to become a duplicate of the same rarity",
+ "Платье сменило цвет и превратилось в карту ": "The Dress changed colour and became ",
+ "Повтор с вероятностью 50% возвращает печать": "Duplicates have a 50% chance to refund a seal",
+ "Следующие карты в порядке руки сильнее на ": "Later cards in your hand are stronger by ",
+ "Четыре обрывка автоматически дают печать; ": "Four scraps automatically make a seal; ",
+ "Эту анимацию нельзя пропустить. Осталось: ": "This animation cannot be skipped. Time left: ",
+ "Все такие карты уже собраны — смени руку.": " You already have all these cards — change your hand.",
+ "Крекеры, виноград, одна оливка. Идеально.": "Crackers, grapes, one olive. Perfect.",
+ "Потолочный кот: три попытки через потолок": "Ceiling Cat: three attempts through the ceiling",
+ "Чем старше мем, тем труднее его получить ": "The older the meme, the rarer the drop ",
+ "В этом открытии доступны только Обычная.": "Only Common cards are available in this opening.",
+ "Килрой был здесь — и останется навсегда.": "Kilroy was here — and is staying forever.",
+ "Негласная харизма освежает любой повтор.": "Unspoken rizz keeps every duplicate fresh.",
+ "Упоротый лис: эффекты руки усилены вдвое": "Stoned Fox: hand effects doubled",
+ "Акции: легендарная карта! Впереди обвал": "Stonks: a Legendary! A crash is coming",
+ "Копирует эффект первой новой карты на ": "Copies the first new card's effect for ",
+ "Му Денг превратила повтор в новую карту": "Moo Deng turned a duplicate into a new card",
+ "Последняя печать: гарантированная новая": "Last seal: a guaranteed new card",
+ "При установке очищает остальных из руки": "Clears the rest of your hand when equipped",
+ "Упоротый лис: эффекты руки не сработали": "Stoned Fox: hand effects did not trigger",
+ "Шанс повтора +10% относительно базового": "Duplicate chance +10% relative to base",
+ "Здесь будет твой следующий любимый мем": "Your next favourite meme goes here",
+ "Только эпические и выше; шанс новой +": "Epic and above only; new-card chance +",
+ "Баф и цена за него учитываются вместе": "The buff and its cost apply together",
+ "Вот он: три попытки стоили две печати": "Dat Boi: three attempts cost two seals",
+ "Кот за столом: повторный бросок исчез": "Cat at the Table: the reroll vanished",
+ "Обрывки приближают бесплатную печать.": "Scraps bring you closer to a free seal.",
+ "Откажись от гачи. Вернись к обезьяне.": "Reject gacha. Return to monke.",
+ "Тройная попытка стоит ещё одну печать": "A triple attempt costs one extra seal",
+ "пусто. Эффекты руки меняют эти шансы.": "empty. Your hand changes these odds.",
+ "Вся ваша коллекция принадлежать нам.": "All your collection are belong to us.",
+ "Девичий ужин: дополнительная попытка": "Girl Dinner: an extra attempt",
+ "Ещё немного — и бесплатное открытие.": "Almost there — a free opening awaits.",
+ "Акции рухнули: только обычные карты": "Stonks crashed: Common cards only",
+ "Все ваши базы забрала эффект карты ": "All Your Base captured the effect of ",
+ "Римская империя: легионы идут в бой": "Roman Empire: the legions march in",
+ "задержать следующий ход на 5 секунд": "chance to delay your next opening by 5 seconds",
+ "превратиться в новую выпавшую карту": "chance to become a newly drawn card",
+ "Длиннокот дотянулся до новой карты": "Longcat stretched all the way to a new card",
+ "Копиума можно обменять на печать, ": "Copium buys a seal, ",
+ "Новая обычная карта даёт +1 печать": "A new Common card gives +1 seal",
+ "Пингвин-нигилист забрал три печати": "Nihilist Penguin took three seals",
+ "ТРИДЦАТЬ ШЕСТЬ АРКАНОВ ИНТЕРНЕТА  ": "THE THIRTY-SIX ARCANA OF THE INTERNET  ",
+ "Новая обычная карта сбросила ауру": "A new Common card reset your aura",
+ "Потеряно дополнительных печатей: ": "Extra seals spent: ",
+ "Узнаешь в конце сезона. Да ладно?": "You will find out when the season ends. O RLY?",
+ "ауры → следующая карта Эпическая+": "aura → next card is Epic+",
+ "Повторы не теряют вес, Копиум ×2": "Duplicates keep their weight, Copium ×2",
+ "Продолжение коллекции — впереди.": "More cards are on the horizon.",
+ "Фисташка теперь черта характера.": "Pistachio is a personality trait now.",
+ "Шанс дополнительных попыток −50%": "Extra-attempt chance −50%",
+ "превратить в новую того же ранга": "chance to become a new card of the same rarity",
+ "Все ваши базы забрала её эффект": "All Your Base captured its effect",
+ "Он не согласен с вероятностями.": "He disagrees with the odds.",
+ "Передаю вызов следующему ящику.": "I nominate the next box.",
+ "Повторный бросок: 25% исчезнуть": "Reroll: 25% chance to vanish",
+ "Собирай мемы. Управляй шансами.": "Collect memes. Bend the odds.",
+ "выпавших Обычная из пула сезона": "drawn Common cards from this season's pool",
+ "Брат, можно мне немного лампы?": "Brother, may I have some lamps?",
+ "Брейнрот — комплект: +1 печать": "Brainrot set: +1 seal",
+ "Все ваши базы четвёртый слот: ": "All Your Base, fourth slot: ",
+ "Каждая имеет отдельный бросок.": "Each attempt rolls separately.",
+ "Комплект «Думер» вернул печать": "Doomer set refunded a seal",
+ "Сначала танцует, потом ворует.": "Dances first, steals later.",
+ "Шанс дополнительных попыток ×2": "Extra-attempt chance ×2",
+ "Шлёпа осуждает твою коллекцию.": "Floppa is judging your collection.",
+ "Вау. Такая удача. Очень гача.": "Wow. Such luck. Very gacha.",
+ "Как часто ты об этом думаешь?": "How often do you think about it?",
+ "Мотылёк и лампа вернул печать": "Moth & Lamp refunded a seal",
+ "Новая Обычная сбрасывает ауру": "A new Common card resets your aura",
+ "бонусов превращаются в штрафы": "of bonuses become penalties",
+ "отключить эффекты руки на ход": "chance to disable hand effects for one opening",
+ "Бесплатных замен за сезон: ": "Free replacements this season: ",
+ "Две попытки в непустом ящике": "Two attempts in a non-empty box",
+ "Длиннокот о-о-очень длинный.": "Longcat is loooooong.",
+ "Для удаления нужна 1 печать.": "Removing a card costs 1 seal.",
+ "Может украсть соседа из руки": "May steal a neighbour from your hand",
+ "Начинает каждый сезон в руке": "Starts every season in your hand",
+ "Не работает рядом с Брейнрот": "Disabled next to Brainrot",
+ "Обрывки до бесплатной печати": "Scraps toward a free seal",
+ "Повтор сбрасывает накопление": "A duplicate resets the stack",
+ "После открытия покидает руку": "Leaves your hand after opening",
+ "Почему выпал этот результат?": "Why did I get this result?",
+ "Собрана бесплатная печать: +": "Free seal assembled: +",
+ "У судьбы есть чувство юмора.": "Fate has a sense of humour.",
+ "скрыть новую до конца сезона": "chance to hide a new card until the season ends",
+ "Всё будет хорошо. Наверное.": "Everything will be fine. Probably.",
+ "Каждое 10-е открытие пустое": "Every 10th opening is empty",
+ "Навсегда занимает один слот": "Permanently occupies one slot",
+ "Танцующий енот украл карту ": "Dancing Raccoon stole ",
+ "Уровень просветления: гача.": "Enlightenment level: gacha.",
+ "Установка отнимает 3 печати": "Costs 3 seals to equip",
+ "Большой Шлёпа ушёл из руки": "Big Floppa left your hand",
+ "Веса Эпическая и выше −10%": "Epic and higher weights −10%",
+ "За ход без Легендарная: +": "Each opening without a Legendary: +",
+ "ИНТЕРНЕТ, СТАВШИЙ ЛЕГЕНДОЙ": "THE INTERNET BECOMES LEGEND",
+ "Первая карта на 20% слабее": "The first card is 20% weaker",
+ "Я просто открываю коропки.": "I just openz boxez.",
+ "удвоить силу эффектов руки": "chance to double hand effects",
+ "Веса остальных тегов −10%": "Other tag weights −10%",
+ "Веса остальных тегов −30%": "Other tag weights −30%",
+ "Не работает рядом с Сигма": "Disabled next to Sigma",
+ "Рассмотреть иллюстрацию: ": "View illustration: ",
+ "Четыре обрывка собраны: +": "Four scraps collected: +",
+ "Я был здесь до интернета.": "I was here before the internet.",
+ "дальше пусто. Результат: ": "then empty. Result: ",
+ "уйти из руки при открытии": "chance to leave your hand on opening",
+ "Ящик пуст. Судьба шутит.": "The box is empty. Fate is joking.",
+ "открытий: по две попытки": "openings: two attempts each",
+ "потерять ещё одну печать": "chance to lose one extra seal",
+ "тег для бонуса комплекта": "tag toward set bonuses",
+ "За ход без повторов: +": "Each opening without duplicates: +",
+ "Новая не реже каждого ": "A new card at least every ",
+ "Это всегда был лутбокс.": "It was always a lootbox.",
+ "Эффекты руки усилены ×2": "Hand effects doubled",
+ "е открытие: три попытки": " openings: three attempts",
+ "к весу легендарных карт": "to Legendary weight",
+ "полностью пустых ящиков": "chance of a completely empty box",
+ "ящиков полностью пустые": "of boxes are completely empty",
+ "Дополнительные попытки": "Extra attempts",
+ "Каждое 3-е открытие: ": "Every 3rd opening: ",
+ "Куда поставить карту «": "Where should “",
+ "Получено экземпляров: ": "Copies collected: ",
+ "СРАБАТЫВАЕТ КАРТА РУКИ": "HAND CARD ACTIVATED",
+ "Сила остальных карт ×": "Other cards' strength ×",
+ "Сине-чёрное. Очевидно.": "Blue and black. Obviously.",
+ "п.п. к двойной попытке": "pp to double-attempt chance",
+ "Бесплатных печатей: +": "Free seals: +",
+ "Да ладно? Да, правда.": "O RLY? YA RLY.",
+ "Занято ледяным ведром": "Occupied by the Ice Bucket",
+ "Кусает в обе стороны.": "Bites both ways.",
+ "Молчи. Держи челюсть.": "Stay quiet. Hold the jaw.",
+ "Новых карт за сезон: ": "New cards this season: ",
+ "Повторы не теряют вес": "Duplicates keep their weight",
+ "Превращение повтора: ": "Duplicate conversion: ",
+ "Харизма вернул печать": "Rizz refunded a seal",
+ "Шесть-семь: +1 печать": "Six Seven: +1 seal",
+ "Эта карта уже в руке.": "This card is already in your hand.",
+ "относительно базового": "relative to base",
+ "попытки, первая новая": "attempts, the first guarantees a new card",
+ "В руке есть Брейнрот": "Brainrot in hand",
+ "Вес Легендарная −50%": "Legendary weight −50%",
+ "Гарантия новой карты": "Guaranteed new card",
+ "Нет подходящей карты": "No eligible card",
+ "Ну всё, я подъехала.": "Ok I pull up.",
+ "Случайных бонусов: ": "Random bonuses: ",
+ "Точно? Нажми ещё раз": "Are you sure? Click again",
+ "Хороним твой бюджет.": "Burying your budget.",
+ "дебаф ослаблен вдвое": "debuff halved",
+ "из пула этого сезона": "from this season's pool",
+ "только обычные карты": "Common cards only",
+ "Каждое открытие: +": "Each opening: +",
+ "Комплект работает: ": "Active set: ",
+ "Копиум за повтор ×": "Copium per duplicate ×",
+ "Повтор даёт ауру; ": "Duplicates give aura; ",
+ "Твои мемы устарели.": "Your memes are outdated.",
+ "Шанс новой карты +": "New-card chance +",
+ "вернуть печать 10% ": "refund a seal 10% ",
+ "из руки за 1 печать": "from your hand for 1 seal",
+ "к шансу новой карты": "to new-card chance",
+ "осталось открытий: ": "openings left: ",
+ "сделать три попытки": "chance to make three attempts",
+ "Двойная попытка, %": "Double-attempt chance, %",
+ "Занимает два слота": "Occupies two slots",
+ "Как работают шансы": "How the odds work",
+ "Куплена печать за ": "Bought a seal for ",
+ "Можно мне лутбокс?": "I can has lootbox?",
+ "Стоимость эффектов": "Effect costs",
+ "Тройная попытка, %": "Triple-attempt chance, %",
+ "ауры, −30 печатей.": "aura, −30 seals.",
+ "к весу Легендарная": "to Legendary weight",
+ "п.п. к новой карте": "pp to new-card chance",
+ "превратить в новую": "chance to become a new card",
+ "Бесплатная печать": "Free seal",
+ "В руке есть Сигма": "Sigma in hand",
+ "Дубайский шоколад": "Dubai Chocolate",
+ "Коллекция собрана": "Collection complete",
+ "Легендарная 3.5% ": "Legendary 3.5% ",
+ "Мифическая 0.5%. ": "Mythic 0.5%. ",
+ "Обрывков печати: ": "Seal scraps: ",
+ "ПОДАРОК ЗА СЕЗОН ": "SEASON REWARD ",
+ "Сбросить прогресс": "Reset progress",
+ "Следующий ящик: ": "Next box: ",
+ "Эффект результата": "Result effect",
+ "замена: 1 печать)": "replacement: 1 seal)",
+ "четвёртый слот: ": "fourth slot: ",
+ "Вес Эпическая +": "Epic weight +",
+ "Горы не ответят.": "The mountains will not answer.",
+ "Здесь был Килрой": "Kilroy Was Here",
+ "Награда сезона: ": "Season reward: ",
+ "Назад к обезьяне": "Return to Monke",
+ "Новая Обычная: ": "New Common: ",
+ "Обрывки печати: ": "Seal scraps: ",
+ "Пингвин-нигилист": "Nihilist Penguin",
+ "Сова «Да ладно?»": "O RLY Owl",
+ "Эпические и выше": "Epic and above",
+ "повторить бросок": "chance to reroll",
+ "Бонус комплекта": "Set bonus",
+ "Вес Брейнрот +": "Brainrot weight +",
+ "Возврат печатей": "Seal refunds",
+ "Всего в ящике: ": "Total in this box: ",
+ "ДОВЕРЬСЯ СУДЬБЕ": "LET FATE DECIDE",
+ "Добавка к весу ": "Weight bonus: ",
+ "Какой-то повтор": "Some duplicate",
+ "Легендарная, 5 ": "Legendary, 5 ",
+ "Мотылёк и лампа": "Moth & Lamp",
+ "Начальные шансы": "Base odds",
+ "Новая карта за ": "New card for ",
+ "Обрывки печати ": "Seal scraps ",
+ "Открытие ящиков": "Opening boxes",
+ "Потолочный кот ": "Ceiling Cat ",
+ "Почеши животик.": "Wash my belly.",
+ "Римская империя": "Roman Empire",
+ "Серия мьюинга: ": "Mewing streak: ",
+ "Так было всегда": "Always Has Been",
+ "Шанс повтора, %": "Duplicate chance, %",
+ "до конца сезона": "until the season ends",
+ "потеряна печать": "seal lost",
+ "усиливается до ": "levelled up to ",
+ "Бросок судьбы ": "Fate roll ",
+ "Вес Зверята +": "Critter weight +",
+ "Вес Зверята ×": "Critter weight ×",
+ "Вес Обычная +": "Common weight +",
+ "Доп. стоимость": "Extra cost",
+ "Копиум растёт.": "Copium rising.",
+ "Кот за столом ": "Cat at the Table ",
+ "Обрывок печати": "Seal scrap",
+ "Открытие ящика": "Opening a box",
+ "Печать сорвана": "Seal broken",
+ "Поп. Поп. Поп.": "Pop. Pop. Pop.",
+ "Потолочный кот": "Ceiling Cat",
+ "Пустой ящик, %": "Empty-box chance, %",
+ "Танец с гробом": "Coffin Dance",
+ "Танцующий енот": "Dancing Raccoon",
+ "Эпическая 11% ": "Epic 11% ",
+ "вернуть печать": "chance to refund a seal",
+ "все оставшиеся": "the remaining",
+ "ещё не найдена": "not found yet",
+ "ослаблен вдвое": "halved",
+ "потеря повтора": "duplicate lost",
+ "Архив арканов": "The Arcana Archive",
+ "Большой Шлёпа": "Big Floppa",
+ "Вес Редкая +": "Rare weight +",
+ "Все ваши базы": "All Your Base",
+ "До гарантии: ": "Guarantee in: ",
+ "Кот за столом": "Cat at the Table",
+ "Ледяное ведро": "Ice Bucket Challenge",
+ "Мемные арканы": "Meme Arcana",
+ "Обмен Копиума": "Copium exchange",
+ "Открыть сразу": "Reveal now",
+ "Шанс новой, %": "New-card chance, %",
+ "Вес Рунет +": "Runet weight +",
+ "Возвращено: ": "Refunded: ",
+ "Девичий ужин": "Girl Dinner",
+ "Легендарная ": "Legendary ",
+ "Мёртв внутри": "Dead Inside",
+ "Новая карта ": "New card ",
+ "Новая карта!": "New card!",
+ "Обычная 60% ": "Common 60% ",
+ "Убирает до ": "Removes up to ",
+ "Упоротый лис": "Stoned Fox",
+ "Эффект учтён": "Effect applied",
+ "иллюстраций ": "illustrations ",
+ "кроме Килроя": "except Kilroy",
+ "не сработало": "did not trigger",
+ "А вот и он.": "Here he comes.",
+ "Вот так-то.": "YA RLY.",
+ "Коллекция: ": "Collection: ",
+ "Копиум ×2, ": "Copium ×2, ",
+ "Легендарная": "Legendary",
+ "НОВАЯ КАРТА": "NEW CARD",
+ "Новая карта": "New card",
+ "Новый сезон": "New season",
+ "Обвал Акции": "Stonks crash",
+ "Окей, бумер": "OK Boomer",
+ "Отключено: ": "Disabled: ",
+ "Пустой слот": "Empty slot",
+ "Пустой ящик": "Empty box",
+ "Редкая 25% ": "Rare 25% ",
+ "Следующие ": "Next ",
+ "Сработало: ": "Triggered: ",
+ "Ящик открыт": "Box opened",
+ "го открытия": " openings",
+ "две попытки": "two attempts",
+ "новых карт!": "new cards!",
+ "повтор: до ": "duplicate: up to ",
+ "фантик: до ": "wrapper: up to ",
+ "Вся колода": "Full deck",
+ "Длиннокот ": "Longcat ",
+ "Заменяет ": "Counts as ",
+ "Имиджборды": "Imageboard",
+ "Мифическая": "Mythic",
+ "Множитель ": "Multiplier: ",
+ "Продолжить": "Continue",
+ "Сверхразум": "Galaxy Brain",
+ "Уже в руке": "Already in hand",
+ "Шесть-семь": "Six Seven",
+ "Эпическая ": "Epic ",
+ "комплект: ": "set: ",
+ "Длиннокот": "Longcat",
+ "Закрыть ×": "Close ×",
+ "Коллекция": "Collection",
+ "Копиум ×2": "Copium ×2",
+ "Копиум ×3": "Copium ×3",
+ "Копиум ×": "Copium ×",
+ "Новая: 0–": "New: 0–",
+ "Повтор: ": "Duplicate: ",
+ "Твоя рука": "Your hand",
+ "Фантик, %": "Wrapper chance, %",
+ "Фарм ауры": "Aura Farming",
+ "Эпическая": "Epic",
+ "бесплатно": "free",
+ "к её весу": "to its weight",
+ "отключена": "disabled",
+ "сработало": "triggered",
+ "Брейнрот": "Brainrot",
+ "В руку: ": "Added to hand: ",
+ "Каждое ": "Every ",
+ "Капибара": "Capybara",
+ "Обычная ": "Common ",
+ "завершён": "is over",
+ "навсегда": "forever",
+ "открытий": "openings",
+ "Акции +": "Stonks +",
+ "Дебаф: ": "Debuff: ",
+ "Журнал)": "Log)",
+ "Зверята": "Critters",
+ "Килрой ": "Kilroy ",
+ "Копиум ": "Copium ",
+ "Копиума": "Copium",
+ "Кот Ъуъ": "Uyu Cat",
+ "Му Денг": "Moo Deng",
+ "Обвал: ": "Crash: ",
+ "Обычная": "Common",
+ "Открыть": "Open",
+ "ПОВТОР ": "DUPLICATE ",
+ "Повтор ": "Duplicate ",
+ "Повтор?": "Duplicate?",
+ "Повторы": "Duplicates",
+ "Попкэт ": "Popcat ",
+ "Попытки": "Attempts",
+ "Редкая ": "Rare ",
+ "Убрать ": "Remove ",
+ "ФАНТИК ": "WRAPPER ",
+ "Фантик ": "Wrapper ",
+ "Харизма": "Rizz",
+ "бросок ": "roll ",
+ "из руки": "from your hand",
+ "печатей": "seals",
+ "печать ": "seal ",
+ "печать.": "seal.",
+ "повтор ": "duplicate ",
+ "подожди": "wait",
+ "попытки": "attempts",
+ "попыток": "attempts",
+ "фантик ": "wrapper ",
+ "штраф: ": "penalty: ",
+ "АРКАНЫ": "ARCANA",
+ "В руке": "In hand",
+ "В руку": "Equip",
+ "Вот он": "Dat Boi",
+ "Доге: ": "Doge: ",
+ "Журнал": "Log",
+ "Звук: ": "Sound: ",
+ "Копиум": "Copium",
+ "Лолкот": "Lolcat",
+ "Мьюинг": "Mewing",
+ "НОВАЯ ": "NEW ",
+ "Новая ": "New ",
+ "Отмена": "Cancel",
+ "Печати": "Seals",
+ "Платье": "The Dress",
+ "Повтор": "Duplicate",
+ "Попкэт": "Popcat",
+ "Пусто ": "Empty ",
+ "Редкая": "Rare",
+ "Сезон ": "Season ",
+ "Фантик": "Wrapper",
+ "из 36.": "of 36.",
+ "новая ": "new ",
+ "печать": "seal",
+ "эффект": "effect",
+ "Акции": "Stonks",
+ "Аура ": "Aura ",
+ "Дебаф": "Debuff",
+ "Думер": "Doomer",
+ "Новая": "New",
+ "ПУСТО": "EMPTY",
+ "Пиббл": "Pibble",
+ "Пусто": "Empty",
+ "Рунет": "Runet",
+ "Сезон": "Season",
+ "Сигма": "Sigma",
+ "Сюда ": "Here ",
+ "Шанс ": "Chance ",
+ "Шесть": "Six",
+ "дебаф": "debuff",
+ "Аура": "Aura",
+ "Вес ": "Weight ",
+ "Доге": "Doge",
+ "Чимс": "Cheems",
+ "выкл": "off",
+ "семь": "seven",
+ "Баф": "Buff",
+ "Ъуъ": "Uyu",
+ "вкл": "on",
+ "из ": "of ",
+ "с.": "s.",
+ "печати": "seals",
+ "»? ": "” go? ",
+ "ТРИДЦАТЬ ШЕСТЬ АРКАНОВ ИНТЕРНЕТА": "THE THIRTY-SIX ARCANA OF THE INTERNET"
+};
+const EN_PATTERN=new RegExp(Object.keys(EN_TEXT).sort((a,b)=>b.length-a.length).map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'g');
+function uiText(value,html=false){
+ if(UI_LANG==='ru')return String(value);
+ return String(value)
+  .replace(/Каждое (\d+)-е открытие: три попытки/g,'Every $1 openings: three attempts')
+  .replace(/Новая не реже каждого (\d+)-го открытия/g,'A new card at least every $1 openings')
+  .replace(/Копирует эффект первой новой карты на все оставшиеся открытий/g,"Copies the first new card’s effect for the rest of the season")
+  .replace(EN_PATTERN,match=>html?esc(EN_TEXT[match]):EN_TEXT[match]);
+}
+function uiHTML(html){
+ if(UI_LANG==='ru')return html;
+ // Translation values are escaped for both text and quoted attribute contexts.
+ return uiText(html,true);
+}
 const R={c:{n:'Обычная',w:60,cls:'fr-c'},r:{n:'Редкая',w:25,cls:'fr-r'},e:{n:'Эпическая',w:11,cls:'fr-e'},l:{n:'Легендарная',w:3.5,cls:'fr-l'},m:{n:'Мифическая',w:.5,cls:'fr-m'}};
 const ORD=['c','r','e','l','m'];
 const TAGS={B:'Брейнрот',S:'Сигма',D:'Думер',A:'Зверята',I:'Имиджборды',R:'Рунет'};
@@ -380,7 +859,10 @@ const BOX_EMBLEM='<svg viewBox="0 0 40 40" aria-hidden="true"><polygon points="'
 /* ---------- sound ---------- */
 let AC=null,NOISE=null,muted=false;
 try{muted=localStorage.getItem(KEY+'-mute')==='1'}catch(e){}
-function ac(){if(muted)return null;if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){return null}}if(AC.state!=='running')AC.resume().catch(()=>{});return AC}
+function ac(){if(muted)return null;if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){return null}}if(AC.state!=='running')AC.resume().catch(()=>{
+
+
+});return AC}
 function noiseBuf(a){if(NOISE)return NOISE;const b=a.createBuffer(1,a.sampleRate*1,a.sampleRate);const d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;NOISE=b;return b}
 function tone(f,t,dur,type,g,filt){const a=ac();if(!a)return;const o=a.createOscillator(),v=a.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t);v.gain.setValueAtTime(0,t);v.gain.linearRampToValueAtTime(g||.1,t+.015);v.gain.exponentialRampToValueAtTime(.0001,t+dur);let node=o;if(filt){const fl=a.createBiquadFilter();fl.type='lowpass';fl.frequency.value=filt;o.connect(fl);node=fl}node.connect(v);v.connect(a.destination);o.start(t);o.stop(t+dur+.05);return o}
 function noise(t,dur,freq,q,g,type){const a=ac();if(!a)return;const s=a.createBufferSource();s.buffer=noiseBuf(a);const f=a.createBiquadFilter();f.type=type||'bandpass';f.frequency.setValueAtTime(freq,t);f.Q.value=q||1;const v=a.createGain();v.gain.setValueAtTime(0,t);v.gain.linearRampToValueAtTime(g||.2,t+.01);v.gain.exponentialRampToValueAtTime(.0001,t+dur);s.connect(f);f.connect(v);v.connect(a.destination);s.start(t,Math.random()*.5);s.stop(t+dur+.05);return f}
@@ -666,7 +1148,7 @@ function ritualVisual(step){
 }
 function showAnim(){
  const effects=S.anim.trace.filter(t=>t.kind==='quick').slice(0,4).map((t,i)=>'<span class="effect-flare" style="animation-delay:'+(.1+i*.22)+'s">'+esc(t.title)+' · '+esc(t.text)+'</span>').join('');
- document.getElementById('anim').innerHTML='<div class="ritual-veil quick-reveal" role="dialog" aria-modal="true" aria-label="Открытие ящика"><div class="opening-rays"></div><div class="arcana-box"><div class="box-lid"></div><div class="box-front"><span>✦</span></div><i class="wax-break">✦</i></div><p class="anim-cap">Печать сорвана</p><div class="effect-flares">'+effects+'</div><button class="btn" data-act="anim-skip">Открыть сразу</button></div>';
+ document.getElementById('anim').innerHTML=uiHTML('<div class="ritual-veil quick-reveal" role="dialog" aria-modal="true" aria-label="Открытие ящика"><div class="opening-rays"></div><div class="arcana-box"><div class="box-lid"></div><div class="box-front"><span>✦</span></div><i class="wax-break">✦</i></div><p class="anim-cap">Печать сорвана</p><div class="effect-flares">'+effects+'</div><button class="btn" data-act="anim-skip">Открыть сразу</button></div>');
  sfx.rustle(2);sfx.spin();clearTimeout(animT);animT=setTimeout(revealAnim,reduced()?120:1450);
 }
 let ritualNext=()=>{};
@@ -694,7 +1176,7 @@ function revealAnim(){
     h+='<div class="fly" style="animation-delay:'+(.12+i*.14)+'s">'+(d.masked?maskedHtml(stamp):cardHtml(d.c,{stamp,noFlavor:true}))+'</div>';
   });
   h+='</div>'+(S.anim.freeSeals?'<p class="tap">Собрана бесплатная печать: +'+S.anim.freeSeals+'</p>':'')+'<details class="roll-history result-history" data-act="anim-noop"><summary>Почему выпал этот результат?</summary>'+S.anim.trace.map(t=>'<p><b>'+esc(t.title)+'</b><br>'+esc(t.text)+'</p>').join('')+'</details><button class="btn gold" data-act="anim-close">Продолжить</button></div>';
-  A.innerHTML=h;
+  A.innerHTML=uiHTML(h);
   if(S.anim.empty)sfx.empty();
   else{
     if(newCount)sfx.fanfare(best);else sfx.dupe();
@@ -703,7 +1185,7 @@ function revealAnim(){
   }
 }
 function closeAnim(){
-  const A=document.getElementById('anim');A.innerHTML='';
+  const A=document.getElementById('anim');A.innerHTML=uiHTML('');
   clearTimeout(animT);const rick=S.anim&&S.anim.rick;S.anim=null;save();
   if(rick){S.lock=Date.now()+5000;sfx.rick();tickRick()}
   render();
@@ -772,7 +1254,7 @@ document.addEventListener('click',e=>{
   else if(act==='season')newSeason();
   else if(act==='sound'){muted=!muted;try{localStorage.setItem(KEY+'-mute',muted?'1':'0')}catch(err){}if(!muted){unlockSound();sfx.fanfare('c')}render()}
   else if(act==='reset'){
-    if(!resetArmed){resetArmed=true;b.textContent='Точно? Нажми ещё раз';setTimeout(()=>{resetArmed=false;render()},3000);return}
+    if(!resetArmed){resetArmed=true;b.textContent=uiText('Точно? Нажми ещё раз');setTimeout(()=>{resetArmed=false;render()},3000);return}
     resetArmed=false;P={col:{},copium:0,season:1};S=freshSeason();save();render();renderLayer();
   }
 });
@@ -797,13 +1279,13 @@ function maskedHtml(stamp){return '<div class="card fr-c">'+stamp+'<div class="f
 function openArtwork(id){
  let d=document.getElementById('artwork');
  if(!d){d=document.createElement('dialog');d.id='artwork';d.className='artwork';d.setAttribute('aria-labelledby','artwork-title');document.body.appendChild(d)}
- d.innerHTML='<div class="book-head"><h2 id="artwork-title">'+esc(BY[id].name)+'</h2><button class="btn" data-act="art-close" autofocus>Закрыть ×</button></div><div class="full-art">'+art(BY[id])+'</div>';
+ d.innerHTML=uiHTML('<div class="book-head"><h2 id="artwork-title">'+esc(BY[id].name)+'</h2><button class="btn" data-act="art-close" autofocus>Закрыть ×</button></div><div class="full-art">'+art(BY[id])+'</div>');
  d.showModal();
 }
 function openArtbook(){
  let d=document.getElementById('artbook');
  if(!d){d=document.createElement('dialog');d.id='artbook';d.className='artbook';d.setAttribute('aria-labelledby','book-title');document.body.appendChild(d);d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}})}
- d.innerHTML='<div class="book-head"><div><h2 id="book-title">Архив арканов</h2><p>36 иллюстраций · Здесь можно рассмотреть всю колоду. Это не открывает карты в коллекции.</p></div><button class="btn book-close" data-act="book-close" autofocus>Закрыть ×</button></div><div class="book-grid">'+CARDS.map(c=>cardHtml(c)).join('')+'</div>';
+ d.innerHTML=uiHTML('<div class="book-head"><div><h2 id="book-title">Архив арканов</h2><p>36 иллюстраций · Здесь можно рассмотреть всю колоду. Это не открывает карты в коллекции.</p></div><button class="btn book-close" data-act="book-close" autofocus>Закрыть ×</button></div><div class="book-grid">'+CARDS.map(c=>cardHtml(c)).join('')+'</div>');
  d.showModal();
 }
 
@@ -877,12 +1359,12 @@ function render(){
   h+='</div></section>';
   h+='<footer class="foot"><span>Drop rates: Обычная 60% · Редкая 25% · Эпическая 11% · Легендарная 3.5% · Мифическая 0.5%. Disclosed as required by law. Honestly.</span><button class="btn" data-act="reset">Сбросить прогресс</button></footer>';
   h=h.replace('Drop rates: Обычная 60% · Редкая 25% · Эпическая 11% · Легендарная 3.5% · Мифическая 0.5%. Disclosed as required by law. Honestly.','Собери 36 арканов. Каждая пара общих тегов усиливает руку. Прогресс сохраняется автоматически.');
-  document.body.classList.toggle('rolling',!!S.anim);document.getElementById('app').inert=!!S.anim;document.getElementById('app').innerHTML=h;
+  document.body.classList.toggle('rolling',!!S.anim);document.getElementById('app').inert=!!S.anim;document.getElementById('app').innerHTML=uiHTML(h);
   const explanation=document.createElement('section');explanation.className='play-guide';
   const previewMul=(live.some(x=>x.c.id===19)?1+pv(live.find(x=>x.c.id===19))/100:1)*(live.some(x=>x.c.id===20)?1+pv(live.find(x=>x.c.id===20))/100:1)*(sets.includes('A')?1.45:1);
   const preview=odds({newMul:previewMul,dupeBias:live.some(x=>x.c.id===12)?.1:0});
   const missing=CARDS.filter(c=>!P.col[c.id]);
-  explanation.innerHTML='<div class="guide-line"><span>'+(collected()===0?'Сорви первую печать. Найденные карты меняют следующие открытия.':sets.length?'Комплект работает: '+sets.map(t=>TAGS[t]).join(', '):'Соедини две карты с общим тегом, чтобы усилить руку.')+'</span><b>До гарантии: '+Math.max(1,PITY-S.sinceNew)+'</b></div><details><summary>Как работают шансы</summary><div class="odds-chips"><span>Новая '+fmtNum(preview.n*100)+'%</span><span>Повтор '+fmtNum(preview.d*100)+'%</span><span>Фантик '+fmtNum(preview.w*100)+'%</span><span>Пусто '+fmtNum(preview.e*100)+'%</span></div><p>Это шансы одной попытки с постоянными эффектами руки. Превращения, дополнительные попытки и случайные эффекты показаны в разборе результата. На 8-м открытии без новой карты срабатывает гарантия, даже при эффекте пустого ящика. Ограничения редкости остаются: для недостающих обычных карт убери Бумера.</p><p>Четыре обрывка автоматически дают печать; '+SHOP+' Копиума можно обменять на печать, '+CRAFT+' — на новую карту. Возврат печати от эффектов ограничен одним за ящик. В конце сезона — ещё одна новая карта.</p></details>'+(live.some(x=>x.c.id===20)?'<p class="hand-warning">Бумер: открытие за 2 печати, только эпические и выше.'+(!missing.some(c=>ORD.indexOf(c.r)>=2)?' Все такие карты уже собраны — смени руку.':'')+'</p>':'')+live.filter(x=>x.off).map(x=>'<p class="hand-warning">'+esc(x.c.name)+': '+esc(x.why)+'</p>').join('');
+  explanation.innerHTML=uiHTML('<div class="guide-line"><span>'+(collected()===0?'Сорви первую печать. Найденные карты меняют следующие открытия.':sets.length?'Комплект работает: '+sets.map(t=>TAGS[t]).join(', '):'Соедини две карты с общим тегом, чтобы усилить руку.')+'</span><b>До гарантии: '+Math.max(1,PITY-S.sinceNew)+'</b></div><details><summary>Как работают шансы</summary><div class="odds-chips"><span>Новая '+fmtNum(preview.n*100)+'%</span><span>Повтор '+fmtNum(preview.d*100)+'%</span><span>Фантик '+fmtNum(preview.w*100)+'%</span><span>Пусто '+fmtNum(preview.e*100)+'%</span></div><p>Это шансы одной попытки с постоянными эффектами руки. Превращения, дополнительные попытки и случайные эффекты показаны в разборе результата. На 8-м открытии без новой карты срабатывает гарантия, даже при эффекте пустого ящика. Ограничения редкости остаются: для недостающих обычных карт убери Бумера.</p><p>Четыре обрывка автоматически дают печать; '+SHOP+' Копиума можно обменять на печать, '+CRAFT+' — на новую карту. Возврат печати от эффектов ограничен одним за ящик. В конце сезона — ещё одна новая карта.</p></details>'+(live.some(x=>x.c.id===20)?'<p class="hand-warning">Бумер: открытие за 2 печати, только эпические и выше.'+(!missing.some(c=>ORD.indexOf(c.r)>=2)?' Все такие карты уже собраны — смени руку.':'')+'</p>':'')+live.filter(x=>x.off).map(x=>'<p class="hand-warning">'+esc(x.c.name)+': '+esc(x.why)+'</p>').join(''));
   document.querySelector('.top').after(explanation);
   renderLayer();
 }
@@ -908,7 +1390,7 @@ function renderLayer(){
     h+='<button class="btn gold" data-act="season">Новый сезон</button></div></div>';
   }
   if(toastMsg)h+='<div class="toast" role="status">'+esc(toastMsg)+'</div>';
-  L.innerHTML=h;
+  L.innerHTML=uiHTML(h);
 }
 
 function localizeSaved(t){if(typeof t!=="string")return t;for(const [a,b] of [["THE THIRTY-SIX ARCANA OF THE INTERNET", "ТРИДЦАТЬ ШЕСТЬ АРКАНОВ ИНТЕРНЕТА"], ["LET FATE DECIDE", "ДОВЕРЬСЯ СУДЬБЕ"], ["Your next obsession goes here", "Здесь будет твой следующий любимый мем"], ["This is a game about microtransactions. You cannot pay. Think about that.", "Это игра о микротранзакциях. Но платить здесь нельзя. Подумай об этом."], ["Sure? Click again", "Точно? Нажми ещё раз"], ["View illustration: ", "Рассмотреть иллюстрацию: "], ["Anti-effect", "Дебаф"], ["Effect", "Баф"], ["eternal", "навсегда"], ["halved", "ослаблен вдвое"], ["Disabled: ", "Отключено: "], ["Some dupe", "Какой-то повтор"], ["You will find out when the season ends. O RLY?", "Узнаешь в конце сезона. Да ладно?"], ["Close ×", "Закрыть ×"], ["The Arcana Archive", "Архив арканов"], ["36 illustrations · A look at the full deck. Your collection stays yours.", "36 иллюстраций · Здесь можно рассмотреть всю колоду. Это не открывает карты в коллекции."], ["Where should ", "Куда поставить карту «"], [" go? ", "»? "], ["Cancel", "Отмена"], ["Here · ", "Сюда · "], ["1 open", "1 печать"], ["Empty slot", "Пустой слот"], ["Occupied by the Ice Bucket", "Занято ледяным ведром"], ["4th slot: ", "четвёртый слот: "], [" for the whole season", " до конца сезона"], [", opens left: ", ", осталось открытий: "], [" set: ", " — комплект: "], ["Set bonus: three cards with the same tag in your hand.", "Бонус комплекта: достаточно двух карт с общим тегом."], ["Mewing streak ", "Серия мьюинга: "], ["Crash: ", "Обвал: "], ["Opening boxes", "Открытие ящиков"], ["wait…", "подожди…"], ["Buy Gems", "Купить кристаллы"], ["Your fate has a sense of humour.", "У судьбы есть чувство юмора."], ["Break the seal. Collect 36 arcana. Build a hand that bends the odds.", "Сорви печать. Собери 36 арканов. Подбери руку, которая изменит твои шансы."], ["Dupe?", "Повтор?"], ["The older the meme, the rarer the drop", "Чем старше мем, тем труднее его получить"], ["View the art book", "Вся колода"], [", anti-effect halved", ", дебаф ослаблен вдвое"], [", not found yet", ", ещё не найдена"], ["Reset progress", "Сбросить прогресс"], ["This animation cannot be skipped. ", "Эту анимацию нельзя пропустить. Осталось: "], [" s left.", " с."], ["Collection complete", "Коллекция собрана"], ["All 36 arcana are yours. Congratulations, you beat a game about lootboxes.", "Все 36 арканов твои. Поздравляем — ты прошёл игру про лутбоксы."], ["Coming soon: Season 2. 120 new memes.", "Продолжение коллекции — впереди."], [" is over", " завершён"], ["New cards this season: ", "Новых карт за сезон: "], [". Collection: ", ". Коллекция: "], [" of 36.", " из 36."], [" confesses: those “dupes” were actually new cards: ", " признаётся: эти «повторы» на самом деле были новыми картами: "], [". YA RLY.", ". Вот так-то."], ["The next season starts with an empty hand again", "Следующий сезон снова начинается с пустой руки"], [", except for Kilroy", ", кроме Килроя"], ["New season", "Новый сезон"], ["a new Common gives +1 open", "Новая обычная карта даёт +1 печать"], ["hand multidrop ×2", "Шанс дополнительных попыток ×2"], ["dupes refund an open 50% of the time", "Повтор с вероятностью 50% возвращает печать"], ["+10% to new cards", "+10% к шансу новой карты"], ["+1.5% to Legendary", "+1,5 к весу легендарных карт"], ["All Your Base took its effect", "Все ваши базы забрала её эффект"], ["Sigma in hand", "В руке есть Сигма"], ["Brainrot in hand", "В руке есть Брейнрот"], ["Girl Dinner: the plate was empty, the open was wasted", "Девичий ужин: тарелка пуста, печать потрачена"], ["Girl Dinner served an extra plate", "Девичий ужин: дополнительная попытка"], ["Roman Empire: the legions march in", "Римская империя: легионы идут в бой"], ["Dancing Raccoon stole ", "Танцующий енот украл карту "], [" from your hand", " из руки"], ["Nihilist Penguin walked off for one last card", "Пингвин-нигилист отправился за последней картой"], ["Dead Inside: 1000 − 7, an open burned", "Мёртв внутри: 1000 − 7, потеряна ещё одна печать"], ["refund an open", "вернуть печать"], ["+2% to Legendary", "+2 к весу легендарных карт"], ["double drop", "две попытки"], ["+30% to new cards", "+30% к шансу новой карты"], ["burned an open", "потеряна печать"], ["Commons only", "только обычные карты"], ["penalty: ", "штраф: "], ["Longcat stretched all the way to a new card", "Длиннокот дотянулся до новой карты"], ["Ceiling Cat dropped three cards through the ceiling", "Потолочный кот: три попытки через потолок"], ["Moo Deng bit the dupe into a new card", "Му Денг превратила повтор в новую карту"], ["O RLY Owl: that dupe? YA RLY, it is new", "Сова «Да ладно?»: это повтор? Нет, новая карта!"], ["Cat at the Table rerolled a dupe into the void", "Кот за столом: повторный бросок исчез"], ["Cat at the Table disagreed and rerolled", "Кот за столом не согласился и перебросил результат"], ["Moo Deng bit the wrong card", "Му Денг укусила не ту карту: новая стала повтором"], ["A new Common reset your aura", "Новая обычная карта сбросила ауру"], [" captured the effect of ", " забрала эффект карты "], ["The Dress changed color and became ", "Платье сменило цвет и превратилось в карту "], [" refunded an open", " вернул печать"], ["Aura charged: the next card is Epic or better", "Аура накоплена: следующая карта будет эпической или выше"], [" leveled up to ", " усиливается до "], [" from this season’s pool", " из пула этого сезона"], ["Stoned Fox: hand effects fired twice", "Упоротый лис: эффекты руки усилены вдвое"], ["Stoned Fox: hand effects did not fire", "Упоротый лис: эффекты руки не сработали"], ["Stonks crashed: Commons only", "Акции рухнули: только обычные карты"], ["The box was empty. Thanks for playing.", "Ящик пуст. Судьба шутит."], ["Stonks: a Legendary! Crash incoming", "Акции: легендарная карта! Впереди обвал"], ["Dat Boi: the triple drop cost 2 opens", "Вот он: три попытки стоили две печати"], ["Big Floppa walked out of your hand", "Большой Шлёпа ушёл из руки"], ["All Your Base released the captured effect", "Все ваши базы освободили захваченный эффект"], ["Kilroy was here, and Kilroy is staying.", "Килрой был здесь — и останется навсегда."], ["This card is already in your hand.", "Эта карта уже в руке."], ["A swap costs 1 open, and you have none left.", "Замена стоит одну печать, а у тебя не осталось печатей."], ["Return to Monke cleared the rest of your hand", "Назад к обезьяне: остальные карты покинули руку"], ["Nihilist Penguin took 3 opens", "Пингвин-нигилист забрал три печати"], ["Into your hand: ", "В руку: "], [" (swap cost 1 open)", " (замена: 1 печать)"], ["Bought an open for ", "Куплена печать за "], ["Box opened", "Ящик открыт"], ["Log", "Журнал"], ["Longcat is loooooooong.", "Длиннокот о-о-очень длинный."], ["Dubai Chocolate", "Дубайский шоколад"], ["Six Seven", "Шесть-семь"], ["Girl Dinner", "Девичий ужин"], ["Roman Empire", "Римская империя"], ["Dancing Raccoon", "Танцующий енот"], ["Pibble", "Пиббл"], ["Rizz", "Харизма"], ["Moo Deng", "Му Денг"], ["Aura Farming", "Фарм ауры"], ["Mewing", "Мьюинг"], ["Nihilist Penguin", "Пингвин-нигилист"], ["Capybara", "Капибара"], ["Moth & Lamp", "Мотылёк и лампа"], ["Big Floppa", "Большой Шлёпа"], ["Always Has Been", "Так было всегда"], ["Cat at the Table", "Кот за столом"], ["Coffin Dance", "Танец с гробом"], ["Popcat", "Попкэт"], ["Dead Inside", "Мёртв внутри"], ["OK Boomer", "Окей, бумер"], ["Cheems", "Чимс"], ["Return to Monke", "Назад к обезьяне"], ["Ice Bucket Challenge", "Ледяное ведро"], ["The Dress", "Платье"], ["Stonks", "Акции"], ["Galaxy Brain", "Сверхразум"], ["Dat Boi", "Вот он"], ["Doge", "Доге"], ["Stoned Fox", "Упоротый лис"], ["Ъуъ Cat", "Кот Ъуъ"], ["O RLY Owl", "Сова «Да ладно?»"], ["Longcat", "Длиннокот"], ["Lolcat", "Лолкот"], ["All Your Base", "Все ваши базы"], ["Ceiling Cat", "Потолочный кот"], ["Kilroy Was Here", "Здесь был Килрой"], ["Meme Arcana", "Мемные арканы"], ["Common", "Обычная"], ["Rare", "Редкая"], ["Epic", "Эпическая"], ["Legendary", "Легендарная"], ["Mythic", "Мифическая"], ["Brainrot", "Брейнрот"], ["Sigma", "Сигма"], ["Doomer", "Думер"], ["Critters", "Зверята"], ["Imageboard", "Имиджборды"], ["Runet", "Рунет"], ["Copium", "Копиум"], ["Season", "Сезон"], ["Opens", "Печати"], ["Collection", "Коллекция"], ["Aura", "Аура"], ["Kilroy", "Килрой"]])t=t.split(a).join(b);return t.replace("Думер set","Комплект «Думер»")}
@@ -922,3 +1404,4 @@ if(window.claude&&window.claude.hot&&window.claude.hot.ready)window.claude.hot.r
 <!-- Art production: built-in image generation; individual scenes from meme-arcana-art-brief.md. Style: 1909 Rider-Waite tarot woodcut, bold editorial ink contours, saturated royal blue, sun yellow, vermilion, green and cream; print grain; no 3D or gradients. -->
 </body>
 </html>
+
